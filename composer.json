@@ -16,12 +16,12 @@
 
 	"autoload": {
 		"psr-4": {
-			"Gt\\CliTools\\": "./src"
+			"Gt\\GtCommand\\": "./src"
 		}
 	},
 	"autoload-dev": {
 		"psr-4": {
-			"Gt\\CliTools\\Test\\": "./test/phpunit"
+			"Gt\\GtCommand\\Test\\": "./test/phpunit"
 		}
 	},
 

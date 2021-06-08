@@ -1,3 +1,21 @@
 #!/usr/bin/env php
 <?php
-echo "This is the Gt binary!", PHP_EOL;
+
+use Gt\Cli\Application;
+use Gt\Cli\Argument\ArgumentList;
+use Gt\GtCommand\Command\ExampleCommand;
+
+foreach([ __DIR__ . "/../../..", __DIR__ . "/../vendor" ] as $vendor) {
+	$autoload = "$vendor/autoload.php";
+	if(file_exists($autoload)) {
+		require($autoload);
+		break;
+	}
+}
+
+$app = new Application(
+	"PHP.Gt Command Line Interface",
+	new ArgumentList(...$argv),
+	new ExampleCommand()
+);
+$app->run();
