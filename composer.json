@@ -2,7 +2,7 @@
 	"name": "phpgt/gtcommand",
 	"description": "Provides the `gt` command for automating WebEngine development.",
 	"bin": [
-		"bin/gt.php"
+		"bin/gt"
 	],
 
 	"require": {
