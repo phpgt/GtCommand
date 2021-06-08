@@ -1,5 +1,5 @@
 {
-	"name": "phpgt/installer",
+	"name": "phpgt/clitools",
 	"description": "Provides the `gt` command for automating WebEngine development.",
 	"bin": [
 		"bin/gt.php"
