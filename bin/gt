@@ -3,7 +3,7 @@
 
 use Gt\Cli\Application;
 use Gt\Cli\Argument\ArgumentList;
-use Gt\GtCommand\Command\ExampleCommand;
+use Gt\GtCommand\Command\CreateCommand;
 
 foreach([ __DIR__ . "/../../..", __DIR__ . "/../vendor" ] as $vendor) {
 	$autoload = "$vendor/autoload.php";
@@ -16,6 +16,6 @@ foreach([ __DIR__ . "/../../..", __DIR__ . "/../vendor" ] as $vendor) {
 $app = new Application(
 	"PHP.Gt Command Line Interface",
 	new ArgumentList(...$argv),
-	new ExampleCommand()
+	new CreateCommand()
 );
 $app->run();

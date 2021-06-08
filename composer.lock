@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c44fea2e065e714126089bc65690d6fb",
+    "content-hash": "a5a2deee58a7314fad9c3e75dba8e874",
     "packages": [
         {
             "name": "phpgt/cli",
-            "version": "v1.3.1",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PhpGt/Cli.git",
-                "reference": "02e25f8c0908f6977bda7ff5ddf1c0af75ba3c4b"
+                "reference": "c3c515f8e2bfdb71b667f115d29783b023dcc0b6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PhpGt/Cli/zipball/02e25f8c0908f6977bda7ff5ddf1c0af75ba3c4b",
-                "reference": "02e25f8c0908f6977bda7ff5ddf1c0af75ba3c4b",
+                "url": "https://api.github.com/repos/PhpGt/Cli/zipball/c3c515f8e2bfdb71b667f115d29783b023dcc0b6",
+                "reference": "c3c515f8e2bfdb71b667f115d29783b023dcc0b6",
                 "shasum": ""
             },
             "require": {
@@ -29,6 +29,7 @@
                 "phpstan/phpstan": ">=0.12.64",
                 "phpunit/phpunit": "9.*"
             },
+            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -54,7 +55,7 @@
             ],
             "support": {
                 "issues": "https://github.com/PhpGt/Cli/issues",
-                "source": "https://github.com/PhpGt/Cli/tree/v1.3.1"
+                "source": "https://github.com/PhpGt/Cli/tree/master"
             },
             "funding": [
                 {
@@ -62,7 +63,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-02-15T09:40:11+00:00"
+            "time": "2021-06-08T17:10:14+00:00"
         },
         {
             "name": "phpgt/daemon",
@@ -2261,7 +2262,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "phpgt/cli": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
