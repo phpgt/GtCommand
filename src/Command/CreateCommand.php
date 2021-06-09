@@ -7,6 +7,13 @@ use Gt\Cli\Parameter\NamedParameter;
 use Gt\Cli\Parameter\Parameter;
 
 class CreateCommand extends Command {
+	const BLUEPRINT_LIST = [
+		"Empty" => "Only the basic dependencies, without anything extra",
+		"Hello, World!" => "A single page with the famous greeting",
+		"Hello, You!" => "A single page with basic interactivity",
+		"To-do list" => "Basic database-driven application",
+	];
+
 	public function run(ArgumentValueList $arguments = null):void {
 		$name = $arguments->get("projectName", "");
 		if(!$name->get()) {
@@ -34,35 +41,31 @@ class CreateCommand extends Command {
 			}
 		}
 
-		$blueprint = "0";
+		$blueprintKeys = array_keys(self::BLUEPRINT_LIST);
+		$blueprintNumber = "0";
 		if($arguments->contains("blueprint")) {
-			$blueprint = $arguments->get("blueprint")->get();
+			$blueprintNumber = $arguments->get("blueprint")->get();
 		}
 		else {
 			$this->writeLine("What blueprint would you like to start with? (type the number)");
-			$this->writeLine(" 0: 'Empty' - only the basic dependencies, without anything extra.");
-			$this->writeLine(" 1: 'Hello, World!' - a single page with the famous greeting.");
-			$this->writeLine(" 2: 'Hello, You!' - a single page with basic interactivity.");
-			$blueprint = $this->readLine($blueprint);
 
-			if($blueprint < 0 || $blueprint > 2) {
+			foreach($blueprintKeys as $i => $key) {
+				$description = self::BLUEPRINT_LIST[$key];
+				$this->writeLine( "$i: $key - $description");
+			}
+			$blueprintNumber = $this->readLine($blueprintNumber);
+
+			if($blueprintNumber < 0 || $blueprintNumber >= count($blueprintKeys)) {
 				$this->writeLine("Cancelling due to invalid blueprint.");
 				exit;
 			}
 		}
 
-		$this->writeLine("Creating project '$name' in namespace '$namespace' with blueprint '$blueprint'...");
+		$selectedBlueprintKey = $blueprintKeys[$blueprintNumber];
+		$this->writeLine("Creating project '$name' in namespace '$namespace' with blueprint '$selectedBlueprintKey'...");
 		sleep(1);
-	}
-
-	private function readLine(string $default = null):string {
-		$prefix = "";
-
-		if(!is_null($default)) {
-			$prefix = "[$default]";
-		}
-
-		return readline("$prefix > ") ?: $default ?? "";
+		$this->writeLine("// TODO: Clone project with Composer!");
+		$this->writeLine("// TODO: Ask user whether they want project serving.");
 	}
 
 	public function getName():string {
@@ -70,7 +73,7 @@ class CreateCommand extends Command {
 	}
 
 	public function getDescription():string {
-		return "An example command to prove the Gt command is working.";
+		return "Create a new WebEngine application";
 	}
 
 	/** @inheritDoc */
