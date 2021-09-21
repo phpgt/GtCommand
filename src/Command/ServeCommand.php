@@ -3,9 +3,18 @@ namespace Gt\GtCommand\Command;
 
 use Gt\Cli\Argument\ArgumentValueList;
 use Gt\Cli\Command\Command;
+use Gt\Server\Command\StartCommand as StartServerCommand;
 
 class ServeCommand extends Command {
+	private StartServerCommand $startServerCommand;
+
+	public function __construct() {
+		$this->startServerCommand = new StartServerCommand();
+	}
+
 	public function run(ArgumentValueList $arguments = null):void {
+		$this->startServerCommand->setStream($this->stream);
+		$this->startServerCommand->run($arguments);
 	}
 
 	public function getName():string {
@@ -13,22 +22,22 @@ class ServeCommand extends Command {
 	}
 
 	public function getDescription():string {
-		return "Run the inbuilt development server";
+		return $this->startServerCommand->getDescription();
 	}
 
 	public function getRequiredNamedParameterList():array {
-		return [];
+		return $this->startServerCommand->getRequiredNamedParameterList();
 	}
 
 	public function getOptionalNamedParameterList():array {
-		return [];
+		return $this->startServerCommand->getOptionalNamedParameterList();
 	}
 
 	public function getRequiredParameterList():array {
-		return [];
+		return $this->startServerCommand->getRequiredParameterList();
 	}
 
 	public function getOptionalParameterList():array {
-		return [];
+		return $this->startServerCommand->getOptionalParameterList();
 	}
 }
