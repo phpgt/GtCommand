@@ -7,11 +7,11 @@
 
 	"require": {
 		"php": ">=8.0",
-		"phpgt/cli": "dev-master"
+		"phpgt/cli": "^1.3"
 	},
 	"require-dev": {
-		"phpunit/phpunit": "^9.5.5",
-		"phpstan/phpstan": "^0.12.88"
+		"phpunit/phpunit": "^9.5",
+		"phpstan/phpstan": "^0.12"
 	},
 
 	"autoload": {
