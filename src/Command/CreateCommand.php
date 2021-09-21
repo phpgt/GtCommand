@@ -74,7 +74,7 @@ class CreateCommand extends Command {
 		}
 
 		if(is_numeric($blueprintInput)) {
-			$selectedBlueprint = $blueprintCollection->getByIndex($blueprintInput);
+			$selectedBlueprint = $blueprintCollection->getByIndex((int)$blueprintInput);
 		}
 		else {
 			$selectedBlueprint = $blueprintCollection->getByKey($blueprintInput);
@@ -107,7 +107,7 @@ class CreateCommand extends Command {
 		if($runNow === "y") {
 			$this->writeLine();
 			$this->writeLine("Okay - running your new application...");
-			sleep(0.5);
+			usleep(500_000);
 			chdir($name);
 
 			$process = new Process("gt", "run");

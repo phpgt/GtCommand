@@ -3,47 +3,32 @@ namespace Gt\GtCommand\Command;
 
 use Gt\Cli\Argument\ArgumentValueList;
 use Gt\Cli\Command\Command;
-use Gt\Cli\Parameter\NamedParameter;
-use Gt\Cli\Parameter\Parameter;
 
 class CronCommand extends Command {
 	public function run(ArgumentValueList $arguments = null):void {
-		// TODO: Implement run() method.
 	}
 
 	public function getName():string {
-		// TODO: Implement getName() method.
+		return "cron";
 	}
 
 	public function getDescription():string {
-		// TODO: Implement getDescription() method.
+		return "Invoke scripts or static functions at regular intervals";
 	}
 
-	/**
-	 * @inheritDoc
-	 */
 	public function getRequiredNamedParameterList():array {
-		// TODO: Implement getRequiredNamedParameterList() method.
+		return [];
 	}
 
-	/**
-	 * @inheritDoc
-	 */
 	public function getOptionalNamedParameterList():array {
-		// TODO: Implement getOptionalNamedParameterList() method.
+		return [];
 	}
 
-	/**
-	 * @inheritDoc
-	 */
 	public function getRequiredParameterList():array {
-		// TODO: Implement getRequiredParameterList() method.
+		return [];
 	}
 
-	/**
-	 * @inheritDoc
-	 */
 	public function getOptionalParameterList():array {
-		// TODO: Implement getOptionalParameterList() method.
+		return [];
 	}
 }

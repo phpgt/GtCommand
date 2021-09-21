@@ -8,6 +8,6 @@ The following commands are exposed:
 + `gt create` - create a new WebEngine application
 + `gt serve` - run the inbuilt development server
 + `gt build` - compile client-side assets
-+ `gt cron` - run scripts or static functions at regular intervals
++ `gt cron` - invoke scripts or static functions at regular intervals
 + `gt run` - run all background scripts at once - a combination of `serve`, `build --watch` and `cron --watch --now`
 + `gt deploy` - instantly deploy your application to the internet
