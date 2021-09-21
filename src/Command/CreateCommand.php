@@ -7,7 +7,6 @@ use Gt\Cli\Parameter\NamedParameter;
 use Gt\Cli\Parameter\Parameter;
 use Gt\Cli\Stream;
 use Gt\Daemon\Process;
-use Gt\GtCommand\Blueprint\Blueprint;
 use Gt\GtCommand\Blueprint\BlueprintCollection;
 
 class CreateCommand extends Command {
@@ -36,14 +35,14 @@ class CreateCommand extends Command {
 		$this->writeLine("Creating application '$name' in: " . getcwd() . "/$name");
 		$this->writeLine();
 
-		$namespace = $arguments->get("namespace", "");;
+		$namespace = $arguments->get("namespace", "");
 		$i = 0;
 		while(!$this->isValidNamespace($namespace)) {
 			if($i > 0) {
 				$this->writeLine("The namespace '$namespace' is not a valid PHP Namespace.", Stream::ERROR);
 			}
 
-			$this->writeLine("What namespace would you like to use for autoloaded classes?");
+			$this->writeLine("What namespace would you like to use for autoloading classes?");
 			$namespace = "App";
 			$namespace = $this->readLine($namespace);
 			$i++;
@@ -104,8 +103,8 @@ class CreateCommand extends Command {
 		}
 		while(!$runNow || !in_array($runNow[0], ["y", "n"]));
 
+		$this->writeLine();
 		if($runNow === "y") {
-			$this->writeLine();
 			$this->writeLine("Okay - running your new application...");
 			usleep(500_000);
 			chdir($name);
@@ -114,8 +113,7 @@ class CreateCommand extends Command {
 			$process->exec();
 			do {
 				$this->write(
-					$process->getOutput(),
-					Stream::OUT
+					$process->getOutput()
 				);
 				$this->write(
 					$process->getErrorOutput(),
@@ -126,7 +124,6 @@ class CreateCommand extends Command {
 			while($process->isRunning());
 		}
 		else {
-			$this->writeLine();
 			$this->writeLine("Your new application is in the '$name' directory.");
 			$this->writeLine("Docs: https://www.php.gt/webengine/getting-started");
 			$this->writeLine("Have fun!");
