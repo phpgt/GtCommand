@@ -4,6 +4,7 @@ namespace Gt\GtCommand\Blueprint;
 use Countable;
 use Iterator;
 
+/** @implements Iterator<int, Blueprint> */
 class BlueprintCollection implements Iterator, Countable {
 	const KEY_TITLE_DESCRIPTION_DATA = [
 		["empty", "Empty", "Only the basic dependencies, without anything extra"],
@@ -12,7 +13,7 @@ class BlueprintCollection implements Iterator, Countable {
 		["todo", "To-do list", "Basic database-driven application"],
 	];
 
-	/** @var array<string, Blueprint> */
+	/** @var array<int, Blueprint> */
 	private array $blueprintArray;
 	private int $iteratorKey;
 
@@ -57,15 +58,17 @@ class BlueprintCollection implements Iterator, Countable {
 		return count($this->blueprintArray);
 	}
 
-	public function getByIndex(int $index):Blueprint {
-		return $this->blueprintArray[$index];
+	public function getByIndex(int $index):?Blueprint {
+		return $this->blueprintArray[$index] ?? null;
 	}
 
-	public function getByKey(string $key):Blueprint {
+	public function getByKey(string $key):?Blueprint {
 		foreach($this as $blueprint) {
 			if(strcasecmp($blueprint->getKey(), $key) === 0) {
 				return $blueprint;
 			}
 		}
+
+		return null;
 	}
 }
