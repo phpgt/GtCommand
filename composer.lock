@@ -4,8 +4,59 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7970aa7d2de51bb436f96a26db7f9025",
+    "content-hash": "4e9ee1124ef74b2ed0b539cdb1852793",
     "packages": [
+        {
+            "name": "magicalex/write-ini-file",
+            "version": "v1.2.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Magicalex/WriteiniFile.git",
+                "reference": "3a933e8222ed2b0ff724c2d4278666fa257e42ac"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Magicalex/WriteiniFile/zipball/3a933e8222ed2b0ff724c2d4278666fa257e42ac",
+                "reference": "3a933e8222ed2b0ff724c2d4278666fa257e42ac",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "php-coveralls/php-coveralls": "2.1.0",
+                "phpunit/phpunit": "5.7.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WriteiniFile\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "magicalex",
+                    "email": "magicalex@mondedie.fr"
+                }
+            ],
+            "description": "Write-ini-file php library for create, remove, erase, add, and update ini file",
+            "homepage": "https://github.com/Magicalex/WriteIniFile",
+            "keywords": [
+                "file",
+                "ini",
+                "write",
+                "write_ini_file"
+            ],
+            "support": {
+                "issues": "https://github.com/Magicalex/WriteiniFile/issues",
+                "source": "https://github.com/Magicalex/WriteiniFile/tree/master"
+            },
+            "time": "2018-09-09T12:40:38+00:00"
+        },
         {
             "name": "phpgt/cli",
             "version": "v1.3.2",
@@ -66,6 +117,61 @@
             "time": "2021-06-15T19:01:44+00:00"
         },
         {
+            "name": "phpgt/config",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PhpGt/Config.git",
+                "reference": "805bba9ef1cb8e087a04e4601045271f73868a96"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PhpGt/Config/zipball/805bba9ef1cb8e087a04e4601045271f73868a96",
+                "reference": "805bba9ef1cb8e087a04e4601045271f73868a96",
+                "shasum": ""
+            },
+            "require": {
+                "magicalex/write-ini-file": "v1.2.4",
+                "php": ">=8.0",
+                "phpgt/typesafegetter": "1.*"
+            },
+            "require-dev": {
+                "phpstan/phpstan": ">=0.12.64",
+                "phpunit/phpunit": "9.*"
+            },
+            "bin": [
+                "bin/config-generate"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Gt\\Config\\": "./src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Greg Bowler",
+                    "email": "greg.bowler@g105b.com"
+                }
+            ],
+            "description": "Manage configuration with ini files and environment variables.",
+            "support": {
+                "issues": "https://github.com/PhpGt/Config/issues",
+                "source": "https://github.com/PhpGt/Config/tree/v1.1.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/sponsors/PhpGt",
+                    "type": "github"
+                }
+            ],
+            "time": "2021-01-30T14:24:07+00:00"
+        },
+        {
             "name": "phpgt/daemon",
             "version": "v1.1.2",
             "source": {
@@ -105,6 +211,64 @@
                 }
             ],
             "time": "2021-02-02T17:33:16+00:00"
+        },
+        {
+            "name": "phpgt/database",
+            "version": "1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PhpGt/Database.git",
+                "reference": "168d6a74c9b97f5df537d875166f1d8c08cb3e86"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PhpGt/Database/zipball/168d6a74c9b97f5df537d875166f1d8c08cb3e86",
+                "reference": "168d6a74c9b97f5df537d875166f1d8c08cb3e86",
+                "shasum": ""
+            },
+            "require": {
+                "ext-pdo": "*",
+                "php": ">=7.4",
+                "phpgt/config": "*"
+            },
+            "require-dev": {
+                "ext-sqlite3": "*",
+                "phpstan/phpstan": "^0.12.42",
+                "phpunit/phpunit": "^9.4.0"
+            },
+            "bin": [
+                "bin/db-migrate"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Gt\\Database\\": "./src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Greg Bowler",
+                    "email": "greg.bowler@g105b.com"
+                },
+                {
+                    "name": "James Fellows",
+                    "email": "james.fellows@finanscapes.com"
+                },
+                {
+                    "name": "Christopher Paul Shaw",
+                    "email": "i-am-in-your-code-stealing-your-lulz@chris-shaw.com"
+                }
+            ],
+            "description": "Database API organisation.",
+            "support": {
+                "issues": "https://github.com/PhpGt/Database/issues",
+                "source": "https://github.com/PhpGt/Database/tree/1.3.0"
+            },
+            "time": "2021-04-29T17:24:29+00:00"
         },
         {
             "name": "phpgt/server",
@@ -150,6 +314,55 @@
                 }
             ],
             "time": "2021-09-21T16:00:47+00:00"
+        },
+        {
+            "name": "phpgt/typesafegetter",
+            "version": "v1.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PhpGt/TypeSafeGetter.git",
+                "reference": "ffeb5d847b3a4b36081a5cd180587fc4d83c6e31"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PhpGt/TypeSafeGetter/zipball/ffeb5d847b3a4b36081a5cd180587fc4d83c6e31",
+                "reference": "ffeb5d847b3a4b36081a5cd180587fc4d83c6e31",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.0"
+            },
+            "require-dev": {
+                "phpstan/phpstan": ">=0.12.42"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Gt\\TypeSafeGetter\\": "./src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Greg Bowler",
+                    "email": "greg.bowler@g105b.com"
+                }
+            ],
+            "description": "An interface for objects that expose type-safe getter methods.",
+            "support": {
+                "issues": "https://github.com/PhpGt/TypeSafeGetter/issues",
+                "source": "https://github.com/PhpGt/TypeSafeGetter/tree/v1.2.2"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/sponsors/PhpGt",
+                    "type": "github"
+                }
+            ],
+            "time": "2021-01-30T12:18:23+00:00"
         }
     ],
     "packages-dev": [
