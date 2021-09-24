@@ -3,6 +3,7 @@
 
 use Gt\Cli\Application;
 use Gt\Cli\Argument\ArgumentList;
+use Gt\GtCommand\Command\BuildCommand;
 use Gt\GtCommand\Command\CreateCommand;
 use Gt\GtCommand\Command\MigrateCommand;
 use Gt\GtCommand\Command\ServeCommand;
@@ -13,6 +14,7 @@ use Gt\GtCommand\Command\DeployCommand;
 foreach([ __DIR__ . "/../../..", __DIR__ . "/../vendor" ] as $vendor) {
 	$autoload = "$vendor/autoload.php";
 	if(file_exists($autoload)) {
+		/** @noinspection PhpIncludeInspection */
 		require($autoload);
 		break;
 	}
@@ -23,6 +25,7 @@ $app = new Application(
 	new ArgumentList(...$argv),
 	new CreateCommand(),
 	new ServeCommand(),
+	new BuildCommand(),
 	new CronCommand(),
 	new RunCommand(),
 	new DeployCommand(),
