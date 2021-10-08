@@ -109,19 +109,9 @@ class CreateCommand extends Command {
 			usleep(500_000);
 			chdir($name);
 
-			$process = new Process("gt", "run");
-			$process->exec();
-			do {
-				$this->write(
-					$process->getOutput()
-				);
-				$this->write(
-					$process->getErrorOutput(),
-					Stream::ERROR
-				);
-				usleep(1_000_000);
-			}
-			while($process->isRunning());
+			$runCommand = new RunCommand();
+			$runCommand->setStream($this->stream);
+			$runCommand->run();
 		}
 		else {
 			$this->writeLine("Your new application is in the '$name' directory.");
