@@ -171,7 +171,7 @@ class CreateCommand extends Command {
 			return false;
 		}
 
-		if(preg_match("/[^a-z0-9_]/i", $name)) {
+		if(preg_match("/[^a-z0-9_\-]/i", $name)) {
 			return false;
 		}
 
