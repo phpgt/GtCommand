@@ -111,7 +111,7 @@ class CreateCommand extends Command {
 
 			$runCommand = new RunCommand();
 			$runCommand->setStream($this->stream);
-			$runCommand->run();
+			$runCommand->run($arguments);
 		}
 		else {
 			$this->writeLine("Your new application is in the '$name' directory.");
