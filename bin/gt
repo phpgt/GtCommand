@@ -24,11 +24,11 @@ $app = new Application(
 	"PHP.Gt Command Line Interface",
 	new ArgumentList(...$argv),
 	new CreateCommand(),
-	new ServeCommand(),
-	new BuildCommand(),
-	new CronCommand(),
 	new RunCommand(),
 	new DeployCommand(),
 	new MigrateCommand(),
+	new ServeCommand(),
+	new BuildCommand(),
+	new CronCommand(),
 );
 $app->run();
