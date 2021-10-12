@@ -153,15 +153,13 @@ class CreateCommand extends Command {
 				true,
 				"namespace",
 				"n",
-				"The application's root namespace",
-				"MyApp",
+				"The application's root namespace"
 			),
 			new Parameter(
 				true,
 				"blueprint",
 				"b",
-				"A template project to build on",
-				"hello-you",
+				"A template project to build on"
 			),
 		];
 	}
