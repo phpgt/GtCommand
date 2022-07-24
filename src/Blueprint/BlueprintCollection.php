@@ -10,7 +10,7 @@ class BlueprintCollection implements Iterator, Countable {
 		["empty", "Empty", "Only the basic dependencies, without anything extra"],
 		["hello-world", "Hello, World!", "A single page with the famous greeting"],
 		["hello-you", "Hello, You!", "A single page with basic interactivity"],
-		["todo", "To-do list", "Basic database-driven application"],
+		["todo-list", "To-do list", "Database-driven CRUD application"],
 	];
 
 	/** @var array<int, Blueprint> */
