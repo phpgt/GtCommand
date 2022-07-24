@@ -29,6 +29,7 @@ class Blueprint {
 			"composer",
 			"create-project",
 			"--remove-vcs",
+			"--stability dev",
 			"webengine-blueprints/" . $this->key . ":dev-master",
 			$dir
 		);
