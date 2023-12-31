@@ -94,6 +94,11 @@ class CreateCommand extends Command {
 		}
 		while($process->isRunning());
 
+		if($code = $process->getExitCode()) {
+			$this->writeLine("There was an error installing the blueprint (exit code $code)");
+			exit($code);
+		}
+
 		$this->writeLine();
 		$this->writeLine("Your new application is created!");
 		$this->writeLine("Would you like to run it now? (Y/N)");
