@@ -7,15 +7,15 @@
 
 	"require": {
 		"php": ">=8.0",
-		"phpgt/cli": "^v1.3",
-		"phpgt/server": "^v1.1",
-		"phpgt/cron": "^v1.0",
-		"phpgt/database": "^v1.3",
-		"phpgt/build": "^v1.0"
+		"phpgt/cli": "^1.3",
+		"phpgt/server": "^1.1",
+		"phpgt/cron": "^1.0",
+		"phpgt/database": "^1.6",
+		"phpgt/build": "^1.0"
 	},
 	"require-dev": {
-		"phpstan/phpstan": "^v1.8",
-		"phpunit/phpunit": "^v9.5"
+		"phpstan/phpstan": "v1.8.0",
+		"phpunit/phpunit": "v9.5.21"
 	},
 
 	"autoload": {
