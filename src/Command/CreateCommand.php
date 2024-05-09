@@ -64,7 +64,7 @@ class CreateCommand extends Command {
 
 		if($code = $process->getExitCode()) {
 			$this->writeLine("There was an error installing the blueprint (exit code $code)");
-			exit($code);
+			exit($code); // phpcs:ignore
 		}
 
 		$this->writeLine();
