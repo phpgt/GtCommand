@@ -9,6 +9,11 @@ use Gt\Daemon\Pool;
 use Gt\Daemon\Process;
 
 class RunCommand extends Command {
+	/**
+	 * TODO: Simplify this function.
+	 * @SuppressWarnings(PHPMD.NPathComplexity)
+	 * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+	 */
 	public function run(ArgumentValueList $arguments = null):void {
 		global $argv;
 
@@ -17,11 +22,11 @@ class RunCommand extends Command {
 			array_push($serveArgs, "--debug");
 		}
 		$bindValue = $arguments->get("bind", "0.0.0.0");
-		array_push($serveArgs, "--bind");
-		array_push($serveArgs, $bindValue);
+		array_push($serveArgs, "--bind", $bindValue);
 		$portValue = $arguments->get("port", "8080");
-		array_push($serveArgs, "--port");
-		array_push($serveArgs, $portValue);
+		array_push($serveArgs, "--port", $portValue);
+		$threadsValue = $arguments->get("threads", "8");
+		array_push($serveArgs, "--threads", $threadsValue);
 
 		$processList = [
 			"serve" => new Process(
@@ -61,7 +66,8 @@ class RunCommand extends Command {
 
 		usleep(100_000);
 		if($processList["serve"]->isRunning()) {
-			$this->writeLine("To view your application in your browser, visit: $localUrl");
+			$this->writeLine("To view your application in your "
+				. " browser, visit: $localUrl");
 			$this->writeLine("To stop running, press [CTRL]+[C].");
 			$this->writeLine();
 		}
