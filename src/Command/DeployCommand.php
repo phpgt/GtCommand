@@ -2,13 +2,14 @@
 namespace Gt\GtCommand\Command;
 
 use Gt\Cli\Argument\ArgumentValueList;
+use Gt\Cli\Command\Command;
 use Gt\Cli\Parameter\NamedParameter;
 use Gt\Cli\Parameter\Parameter;
 
 class DeployCommand extends AbstractProxyCommand {
+	/** @SuppressWarnings(PHPMD.UnusedFormalParameter) */
 	public function __construct() {
-		// TODO:
-		$this->proxyCommand = new class extends \Gt\Cli\Command\Command {
+		$this->proxyCommand = new class extends Command {
 			public function getDescription():string {
 				return "Not yet implemented";
 			}

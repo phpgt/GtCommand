@@ -2,10 +2,11 @@
 namespace Gt\GtCommand\Command;
 
 use Gt\Cli\Argument\ArgumentValueList;
+use Gt\Build\Cli\RunCommand as CliRunCommand;
 
 class BuildCommand extends AbstractProxyCommand {
 	public function __construct() {
-		$this->proxyCommand = new \Gt\Build\Cli\RunCommand();
+		$this->proxyCommand = new CliRunCommand();
 	}
 
 	public function run(ArgumentValueList $arguments = null):void {

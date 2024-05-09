@@ -1,55 +1,22 @@
 <?php
 namespace Gt\GtCommand\Command;
 
+use Gt\Cli\Argument\ArgumentValue;
 use Gt\Cli\Argument\ArgumentValueList;
 use Gt\Cli\Command\Command;
 use Gt\Cli\Parameter\NamedParameter;
 use Gt\Cli\Parameter\Parameter;
 use Gt\Cli\Stream;
-use Gt\Daemon\Process;
 use Gt\GtCommand\Blueprint\BlueprintCollection;
 
 class CreateCommand extends Command {
+	/**
+	 * TODO: Simplify this function
+	 * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+	 */
 	public function run(ArgumentValueList $arguments = null):void {
-		$name = $arguments->get("projectName", "");
-
-		$i = 0;
-		while(!$this->isValidName($name)) {
-			if($i > 0) {
-				$this->writeLine("The name '$name' is not a valid directory name.", Stream::ERROR);
-				$this->writeLine("Please use only letters, numbers and underscores when naming.", Stream::ERROR);
-			}
-
-			$this->writeLine("What is the name of your project? (This will name its directory)");
-			$name = $this->readLine();
-			$i++;
-		}
-
-		if(file_exists($name)) {
-			$type = is_file($name) ? "file" : "directory";
-			$this->writeLine("Oops - there's already a $type called '$name' in the current directory.");
-			exit(1);
-		}
-
-		$this->writeLine();
-		$this->writeLine("Creating application '$name' in: " . getcwd() . "/$name");
-		$this->writeLine();
-
-		$namespace = $arguments->get("namespace", "");
-		$i = 0;
-		while(!$this->isValidNamespace($namespace)) {
-			if($i > 0) {
-				$this->writeLine("The namespace '$namespace' is not a valid PHP Namespace.", Stream::ERROR);
-			}
-
-			$this->writeLine("What namespace would you like to use for autoloading classes?");
-			$namespace = "App";
-			$namespace = $this->readLine($namespace);
-			$i++;
-		}
-		$this->writeLine();
-		$this->writeLine("Using namespace '$namespace'.");
-		$this->writeLine();
+		$name = $this->readValidName($arguments->get("projectName", ""));
+		$namespace = $this->readValidNamespace($arguments->get("namespace", ""));
 
 		$blueprintCollection = new BlueprintCollection();
 		$blueprintInput = "0";
@@ -68,7 +35,7 @@ class CreateCommand extends Command {
 
 			if($blueprintInput < 0 || $blueprintInput >= count($blueprintCollection)) {
 				$this->writeLine("Cancelling due to invalid blueprint.");
-				exit;
+				exit; // phpcs:ignore
 			}
 		}
 
@@ -183,4 +150,52 @@ class CreateCommand extends Command {
 
 		return !preg_match("/[^\w\\\]+/", $namespace);
 	}
+
+	private function readValidName(string $name):string {
+		$i = 0;
+
+		while(!$this->isValidName($name)) {
+			if($i > 0) {
+				$this->writeLine("The name '$name' is not a valid directory name.", Stream::ERROR);
+				$this->writeLine("Please use only letters, numbers and underscores when naming.", Stream::ERROR);
+			}
+
+			$this->writeLine("What is the name of your project? (This will name its directory)");
+			$name = $this->readLine();
+			$i++;
+		}
+
+		if(file_exists($name)) {
+			$type = is_file($name) ? "file" : "directory";
+			$this->writeLine("Oops - there's already a $type called '$name' in the current directory.");
+			exit(1); // phpcs:ignore
+		}
+
+		$this->writeLine();
+		$this->writeLine("Creating application '$name' in: " . getcwd() . "/$name");
+		$this->writeLine();
+
+		return $name;
+	}
+
+	private function readValidNamespace(ArgumentValue $namespace):string {
+		$i = 0;
+		while(!$this->isValidNamespace($namespace)) {
+			if($i > 0) {
+				$this->writeLine("The namespace '$namespace' is not a valid PHP Namespace.", Stream::ERROR);
+			}
+
+			$this->writeLine("What namespace would you like to use for autoloading classes?");
+			$namespace = "App";
+			$namespace = $this->readLine($namespace);
+			$i++;
+		}
+		$this->writeLine();
+		$this->writeLine("Using namespace '$namespace'.");
+		$this->writeLine();
+
+		return $namespace;
+	}
+
+
 }
