@@ -16,12 +16,12 @@ class RunCommand extends Command {
 		if($arguments->contains("debug")) {
 			array_push($serveArgs, "--debug");
 		}
-		$bindValue = $arguments->get("bind", "0.0.0.0");
-		array_push($serveArgs, "--bind");
-		array_push($serveArgs, $bindValue);
-		$portValue = $arguments->get("port", "8080");
-		array_push($serveArgs, "--port");
-		array_push($serveArgs, $portValue);
+		$bindValue = $arguments->get("bind") ?? "0.0.0.0";
+		array_push($serveArgs, "--bind", $bindValue);
+		$portValue = $arguments->get("port") ?? "8080";
+		array_push($serveArgs, "--port", $portValue);
+		$threadsValue = $arguments->get("threads") ?? "8";
+		array_push($serveArgs, "--threads", $threadsValue);
 
 		$processList = [
 			"serve" => new Process(
