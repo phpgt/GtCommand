@@ -13,6 +13,7 @@ class CreateCommand extends Command {
 	/**
 	 * TODO: Simplify this function
 	 * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+	 * @SuppressWarnings(PHPMD.NPathComplexity)
 	 */
 	public function run(ArgumentValueList $arguments = null):void {
 		$name = $this->readValidName($arguments->get("projectName", ""));
