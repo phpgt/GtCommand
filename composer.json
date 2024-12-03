@@ -8,7 +8,7 @@
 	"require": {
 		"php": ">=8.2",
 		"phpgt/cli": "^1.3",
-		"phpgt/server": "dev-master as v1.1.5",
+		"phpgt/server": "^1.1",
 		"phpgt/cron": "^1.0",
 		"phpgt/database": "^1.6",
 		"phpgt/build": "^1.0"
