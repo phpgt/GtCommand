@@ -14,7 +14,7 @@ class DeployCommand extends AbstractProxyCommand {
 				return "Not yet implemented";
 			}
 
-			public function run(ArgumentValueList $arguments = null):void {
+			public function run(?ArgumentValueList $arguments = null):void {
 			}
 
 			public function getName():string {

@@ -14,7 +14,7 @@ class RunCommand extends Command {
 	 * @SuppressWarnings(PHPMD.NPathComplexity)
 	 * @SuppressWarnings(PHPMD.CyclomaticComplexity)
 	 */
-	public function run(ArgumentValueList $arguments = null):void {
+	public function run(?ArgumentValueList $arguments = null):void {
 		global $argv;
 
 		$serveArgs = [];

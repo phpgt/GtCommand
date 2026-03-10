@@ -7,7 +7,7 @@ use Gt\Cli\Command\Command;
 abstract class AbstractProxyCommand extends Command {
 	protected Command $proxyCommand;
 
-	public function run(ArgumentValueList $arguments = null):void {
+	public function run(?ArgumentValueList $arguments = null):void {
 		$this->proxyCommand->setStream($this->stream);
 		$this->proxyCommand->run($arguments);
 	}

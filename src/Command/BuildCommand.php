@@ -9,7 +9,7 @@ class BuildCommand extends AbstractProxyCommand {
 		$this->proxyCommand = new CliRunCommand();
 	}
 
-	public function run(ArgumentValueList $arguments = null):void {
+	public function run(?ArgumentValueList $arguments = null):void {
 		if(!$arguments->contains("default")) {
 			$arguments->set("default", "vendor/phpgt/webengine/build.default.json");
 		}
