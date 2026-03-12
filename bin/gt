@@ -2,6 +2,7 @@
 <?php
 use Gt\Cli\Application;
 use Gt\Cli\Argument\ArgumentList;
+use Gt\GtCommand\Command\AddCommand;
 use Gt\GtCommand\Command\BuildCommand;
 use Gt\GtCommand\Command\CreateCommand;
 use Gt\GtCommand\Command\MigrateCommand;
@@ -21,6 +22,7 @@ foreach([ __DIR__ . "/../../..", __DIR__ . "/../vendor" ] as $vendor) {
 $app = new Application(
 	"PHP.GT Command Line Interface",
 	new ArgumentList(...$argv),
+	new AddCommand(),
 	new CreateCommand(),
 	new RunCommand(),
 	new DeployCommand(),
