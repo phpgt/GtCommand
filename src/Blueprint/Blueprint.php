@@ -24,7 +24,7 @@ class Blueprint {
 		return $this->description;
 	}
 
-	public function install(string $dir):Process {
+	public function createProject(string $dir):Process {
 		return new Process(
 			"composer",
 			"create-project",
@@ -33,4 +33,14 @@ class Blueprint {
 			$dir
 		);
 	}
+
+	public function updateDependencies(string $dir):Process {
+		$process = new Process(
+			"composer",
+			"update",
+		);
+		$process->setExecCwd($dir);
+		return $process;
+	}
+
 }

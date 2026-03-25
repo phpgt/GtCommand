@@ -51,9 +51,18 @@ class CreateCommand extends Command {
 		$this->writeLine("Creating project '$name' in namespace '$namespace' with blueprint '$selectedBlueprintTitle'...");
 		sleep(1);
 
-		$process = $selectedBlueprint->install($name);
+		$process = $selectedBlueprint->createProject($name);
 		$process->exec();
-		$process->setBlocking(false);
+
+		do {
+			$this->write($process->getOutput());
+			$this->write($process->getErrorOutput(), Stream::ERROR);
+			usleep(100_000);
+		}
+		while($process->isRunning());
+
+		$process = $selectedBlueprint->updateDependencies($name);
+		$process->exec();
 
 		do {
 			$this->write($process->getOutput());
