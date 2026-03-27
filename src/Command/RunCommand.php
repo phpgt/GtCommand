@@ -90,8 +90,13 @@ class RunCommand extends Command {
 			$this->write($pool->read());
 			$this->write($pool->read(Process::PIPE_ERROR), Stream::ERROR);
 			usleep(100_000);
+			/** @var bool $isRunning
+			 * @noinspection PhpRedundantVariableDocTypeInspection
+			 * This is necessary to suppress "Do-while loop condition is always true" error from phpstan. Bug with stan?
+			 */
+			$isRunning = $processList["serve"]->isRunning();
 		}
-		while($processList["serve"]->isRunning());
+		while($isRunning);
 		$this->writeLine("The server process has ended.");
 	}
 
