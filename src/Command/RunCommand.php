@@ -7,6 +7,7 @@ use Gt\Cli\Parameter\Parameter;
 use Gt\Cli\Stream;
 use Gt\Daemon\Pool;
 use Gt\Daemon\Process;
+use Gt\GtCommand\UI\Egg\RandomStartingMessage;
 
 class RunCommand extends Command {
 	/**
@@ -40,7 +41,7 @@ class RunCommand extends Command {
 			$processList["build"] = new Process($argv[0], "build", "--watch");
 		}
 
-		if(!$arguments->contains("no-cron")) {
+		if(!$arguments->contains("no-cron") && is_file("crontab")) {
 			$processList["cron"] = new Process($argv[0], "cron", "--watch");
 		}
 
@@ -64,20 +65,38 @@ class RunCommand extends Command {
 			$localUrl .= ":$portValue";
 		}
 
-		usleep(100_000);
+		$this->write("Starting WebEngine...");
+		usleep(500_000);
 		if($processList["serve"]->isRunning()) {
-			$this->writeLine("To view your application in your "
+			$this->writeLine(" ✅");
+			usleep(500_000);
+			$this->writeLine();
+			$this->writeLine("To view your application in your"
 				. " browser, visit: $localUrl");
 			$this->writeLine("To stop running, press [CTRL]+[C].");
 			$this->writeLine();
+			usleep(500_000);
 		}
+		else {
+			$this->writeLine(" ❌");
+			$this->write($processList["serve"]->getOutput(Process::PIPE_ERROR), Stream::ERROR);
+			return;
+		}
+
+		$this->write($processList["serve"]->getOutput());
+		$this->write($processList["serve"]->getOutput(Process::PIPE_ERROR), Stream::ERROR);
 
 		do {
 			$this->write($pool->read());
 			$this->write($pool->read(Process::PIPE_ERROR), Stream::ERROR);
 			usleep(100_000);
+			/** @var bool $isRunning
+			 * @noinspection PhpRedundantVariableDocTypeInspection
+			 * This is necessary to suppress "Do-while loop condition is always true" error from phpstan. Bug with stan?
+			 */
+			$isRunning = $processList["serve"]->isRunning();
 		}
-		while($processList["serve"]->isRunning());
+		while($isRunning);
 		$this->writeLine("The server process has ended.");
 	}
 
