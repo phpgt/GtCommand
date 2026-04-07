@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "33178d533811345a215d785241cca492",
+    "content-hash": "257c60e88b32d6ddcbc290a8fdd41e11",
     "packages": [
         {
             "name": "composer/semver",
@@ -260,28 +260,28 @@
         },
         {
             "name": "phpgt/build",
-            "version": "v1.2.3",
+            "version": "v1.3.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/PhpGt/Build.git",
-                "reference": "27d247590819c4b5dd6052a5758844ff1bb03b17"
+                "url": "https://github.com/phpgt/Build.git",
+                "reference": "da5f1a4ab2a1cd72b44e23902e13a741b1505d12"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PhpGt/Build/zipball/27d247590819c4b5dd6052a5758844ff1bb03b17",
-                "reference": "27d247590819c4b5dd6052a5758844ff1bb03b17",
+                "url": "https://api.github.com/repos/phpgt/Build/zipball/da5f1a4ab2a1cd72b44e23902e13a741b1505d12",
+                "reference": "da5f1a4ab2a1cd72b44e23902e13a741b1505d12",
                 "shasum": ""
             },
             "require": {
                 "composer/semver": "v3.*",
                 "ext-json": "*",
-                "php": ">=7.4",
-                "phpgt/cli": "^v1.3.0",
-                "phpgt/sync": "^1.3.0",
+                "php": ">=8.2",
+                "phpgt/cli": "^1.4",
+                "phpgt/sync": "^1.3",
                 "webmozart/glob": "v4.4.*"
             },
             "require-dev": {
-                "phpmd/phpmd": "^2.13",
+                "phpmd/phpmd": "^2.15",
                 "phpstan/phpstan": "^1.10",
                 "phpunit/phpunit": "^10.1",
                 "squizlabs/php_codesniffer": "^3.7"
@@ -301,8 +301,8 @@
             ],
             "description": "Client-side build system for PHP projects.",
             "support": {
-                "issues": "https://github.com/PhpGt/Build/issues",
-                "source": "https://github.com/PhpGt/Build/tree/v1.2.3"
+                "issues": "https://github.com/phpgt/Build/issues",
+                "source": "https://github.com/phpgt/Build/tree/v1.3.0"
             },
             "funding": [
                 {
@@ -310,20 +310,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-08-09T10:34:24+00:00"
+            "time": "2026-04-07T22:05:47+00:00"
         },
         {
             "name": "phpgt/cli",
-            "version": "v1.3.5",
+            "version": "v1.4.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/PhpGt/Cli.git",
-                "reference": "42aeef24ab9789907358002fdcc37cb3a2e26b4b"
+                "url": "https://github.com/phpgt/Cli.git",
+                "reference": "84a1b720efe836624313061ac42e81dd7d9c2948"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PhpGt/Cli/zipball/42aeef24ab9789907358002fdcc37cb3a2e26b4b",
-                "reference": "42aeef24ab9789907358002fdcc37cb3a2e26b4b",
+                "url": "https://api.github.com/repos/phpgt/Cli/zipball/84a1b720efe836624313061ac42e81dd7d9c2948",
+                "reference": "84a1b720efe836624313061ac42e81dd7d9c2948",
                 "shasum": ""
             },
             "require": {
@@ -362,8 +362,8 @@
                 "webengine"
             ],
             "support": {
-                "issues": "https://github.com/PhpGt/Cli/issues",
-                "source": "https://github.com/PhpGt/Cli/tree/v1.3.5"
+                "issues": "https://github.com/phpgt/Cli/issues",
+                "source": "https://github.com/phpgt/Cli/tree/v1.4.0"
             },
             "funding": [
                 {
@@ -371,7 +371,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-05-08T17:45:44+00:00"
+            "time": "2026-03-08T23:28:56+00:00"
         },
         {
             "name": "phpgt/config",
@@ -590,20 +590,20 @@
         },
         {
             "name": "phpgt/server",
-            "version": "dev-master",
+            "version": "v1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpgt/Server.git",
-                "reference": "04f877d43d245711591e9f83c814d06d82151de1"
+                "reference": "fdeafc0f9fd45cdb135185a178e126cc35483597"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpgt/Server/zipball/04f877d43d245711591e9f83c814d06d82151de1",
-                "reference": "04f877d43d245711591e9f83c814d06d82151de1",
+                "url": "https://api.github.com/repos/phpgt/Server/zipball/fdeafc0f9fd45cdb135185a178e126cc35483597",
+                "reference": "fdeafc0f9fd45cdb135185a178e126cc35483597",
                 "shasum": ""
             },
             "require": {
-                "php": ">=8.0",
+                "php": ">=8.2",
                 "phpgt/cli": "^1.3.5"
             },
             "require-dev": {
@@ -611,7 +611,6 @@
                 "phpstan/phpstan": "^2.1",
                 "squizlabs/php_codesniffer": "^3.7"
             },
-            "default-branch": true,
             "bin": [
                 "bin/serve"
             ],
@@ -625,7 +624,7 @@
             "description": "Development HTTP server.",
             "support": {
                 "issues": "https://github.com/phpgt/Server/issues",
-                "source": "https://github.com/phpgt/Server/tree/master"
+                "source": "https://github.com/phpgt/Server/tree/v1.2.0"
             },
             "funding": [
                 {
@@ -633,7 +632,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-03-20T15:11:16+00:00"
+            "time": "2026-04-07T22:04:12+00:00"
         },
         {
             "name": "phpgt/sync",
@@ -1434,16 +1433,16 @@
         },
         {
             "name": "symfony/config",
-            "version": "v7.4.7",
+            "version": "v7.4.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/config.git",
-                "reference": "6c17162555bfb58957a55bb0e43e00035b6ae3d5"
+                "reference": "2d19dde43fa2ff720b9a40763ace7226594f503b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/config/zipball/6c17162555bfb58957a55bb0e43e00035b6ae3d5",
-                "reference": "6c17162555bfb58957a55bb0e43e00035b6ae3d5",
+                "url": "https://api.github.com/repos/symfony/config/zipball/2d19dde43fa2ff720b9a40763ace7226594f503b",
+                "reference": "2d19dde43fa2ff720b9a40763ace7226594f503b",
                 "shasum": ""
             },
             "require": {
@@ -1489,7 +1488,7 @@
             "description": "Helps you find, load, combine, autofill and validate configuration values of any kind",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/config/tree/v7.4.7"
+                "source": "https://github.com/symfony/config/tree/v7.4.8"
             },
             "funding": [
                 {
@@ -1509,20 +1508,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-03-06T10:41:14+00:00"
+            "time": "2026-03-24T13:12:05+00:00"
         },
         {
             "name": "symfony/dependency-injection",
-            "version": "v7.4.7",
+            "version": "v7.4.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dependency-injection.git",
-                "reference": "0f651e58f4917fb0e2cd261ccbfe3d71e6e0f5db"
+                "reference": "f7025fd7b687c240426562f86ada06a93b1e771d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/0f651e58f4917fb0e2cd261ccbfe3d71e6e0f5db",
-                "reference": "0f651e58f4917fb0e2cd261ccbfe3d71e6e0f5db",
+                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/f7025fd7b687c240426562f86ada06a93b1e771d",
+                "reference": "f7025fd7b687c240426562f86ada06a93b1e771d",
                 "shasum": ""
             },
             "require": {
@@ -1573,7 +1572,7 @@
             "description": "Allows you to standardize and centralize the way objects are constructed in your application",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/dependency-injection/tree/v7.4.7"
+                "source": "https://github.com/symfony/dependency-injection/tree/v7.4.8"
             },
             "funding": [
                 {
@@ -1593,7 +1592,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-03-03T07:48:48+00:00"
+            "time": "2026-03-31T06:50:29+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
@@ -1664,16 +1663,16 @@
         },
         {
             "name": "symfony/filesystem",
-            "version": "v7.4.6",
+            "version": "v7.4.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "3ebc794fa5315e59fd122561623c2e2e4280538e"
+                "reference": "58b9790d12f9670b7f53a1c1738febd3108970a5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/3ebc794fa5315e59fd122561623c2e2e4280538e",
-                "reference": "3ebc794fa5315e59fd122561623c2e2e4280538e",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/58b9790d12f9670b7f53a1c1738febd3108970a5",
+                "reference": "58b9790d12f9670b7f53a1c1738febd3108970a5",
                 "shasum": ""
             },
             "require": {
@@ -1710,7 +1709,7 @@
             "description": "Provides basic utilities for the filesystem",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/filesystem/tree/v7.4.6"
+                "source": "https://github.com/symfony/filesystem/tree/v7.4.8"
             },
             "funding": [
                 {
@@ -1730,7 +1729,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-02-25T16:50:00+00:00"
+            "time": "2026-03-24T13:12:05+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -1989,16 +1988,16 @@
         },
         {
             "name": "symfony/var-exporter",
-            "version": "v7.4.0",
+            "version": "v7.4.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-exporter.git",
-                "reference": "03a60f169c79a28513a78c967316fbc8bf17816f"
+                "reference": "398907e89a2a56fe426f7955c6fa943ec0c77225"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-exporter/zipball/03a60f169c79a28513a78c967316fbc8bf17816f",
-                "reference": "03a60f169c79a28513a78c967316fbc8bf17816f",
+                "url": "https://api.github.com/repos/symfony/var-exporter/zipball/398907e89a2a56fe426f7955c6fa943ec0c77225",
+                "reference": "398907e89a2a56fe426f7955c6fa943ec0c77225",
                 "shasum": ""
             },
             "require": {
@@ -2046,7 +2045,7 @@
                 "serialize"
             ],
             "support": {
-                "source": "https://github.com/symfony/var-exporter/tree/v7.4.0"
+                "source": "https://github.com/symfony/var-exporter/tree/v7.4.8"
             },
             "funding": [
                 {
@@ -2066,21 +2065,12 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-09-11T10:15:23+00:00"
+            "time": "2026-03-24T13:12:05+00:00"
         }
     ],
-    "aliases": [
-        {
-            "package": "phpgt/server",
-            "version": "9999999-dev",
-            "alias": "v1.2.3",
-            "alias_normalized": "1.2.3.0"
-        }
-    ],
+    "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "phpgt/server": 20
-    },
+    "stability-flags": {},
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

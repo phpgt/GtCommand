@@ -14,7 +14,7 @@ class AddCommand extends Command {
 		"cron",
 	];
 
-	public function run(?ArgumentValueList $arguments = null):void {
+	public function run(?ArgumentValueList $arguments = null):int {
 		$type = (string)$arguments?->get("type", "");
 		$name = (string)$arguments?->get("name", "");
 		$template = (string)$arguments?->get("template", "");
@@ -30,6 +30,8 @@ class AddCommand extends Command {
 		foreach($destinationFileMap as $sourcePath => $destinationPath) {
 			$this->copyTemplateFile($sourcePath, $destinationPath, $name);
 		}
+
+		return 0;
 	}
 
 	public function getName():string {

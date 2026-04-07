@@ -15,7 +15,7 @@ class CreateCommand extends Command {
 	 * @SuppressWarnings(PHPMD.CyclomaticComplexity)
 	 * @SuppressWarnings(PHPMD.NPathComplexity)
 	 */
-	public function run(?ArgumentValueList $arguments = null):void {
+	public function run(?ArgumentValueList $arguments = null):int {
 		$name = $this->readValidName($arguments->get("projectName", ""));
 		$namespace = $this->readValidNamespace($arguments->get("namespace", ""));
 
@@ -101,6 +101,8 @@ class CreateCommand extends Command {
 			$this->writeLine("Have fun!");
 			$this->writeLine();
 		}
+
+		return 0;
 	}
 
 	public function getName():string {

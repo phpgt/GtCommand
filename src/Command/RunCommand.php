@@ -7,7 +7,6 @@ use Gt\Cli\Parameter\Parameter;
 use Gt\Cli\Stream;
 use Gt\Daemon\Pool;
 use Gt\Daemon\Process;
-use Gt\GtCommand\UI\Egg\RandomStartingMessage;
 
 class RunCommand extends Command {
 	/**
@@ -15,7 +14,7 @@ class RunCommand extends Command {
 	 * @SuppressWarnings(PHPMD.NPathComplexity)
 	 * @SuppressWarnings(PHPMD.CyclomaticComplexity)
 	 */
-	public function run(?ArgumentValueList $arguments = null):void {
+	public function run(?ArgumentValueList $arguments = null):int {
 		global $argv;
 
 		$serveArgs = [];
@@ -80,7 +79,7 @@ class RunCommand extends Command {
 		else {
 			$this->writeLine(" ❌");
 			$this->write($processList["serve"]->getOutput(Process::PIPE_ERROR), Stream::ERROR);
-			return;
+			return 1;
 		}
 
 		$this->write($processList["serve"]->getOutput());
@@ -98,6 +97,7 @@ class RunCommand extends Command {
 		}
 		while($isRunning);
 		$this->writeLine("The server process has ended.");
+		return 2;
 	}
 
 	public function getName():string {
