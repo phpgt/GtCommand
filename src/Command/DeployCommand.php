@@ -14,6 +14,7 @@ class DeployCommand extends AbstractProxyCommand {
 				return "Not yet implemented";
 			}
 
+			// phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundInExtendedClass
 			public function run(?ArgumentValueList $arguments = null):int {
 				return 0;
 			}
