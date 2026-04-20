@@ -21,6 +21,7 @@
 
 	"autoload": {
 		"psr-4": {
+			"GT\\GtCommand\\": "./src",
 			"Gt\\GtCommand\\": "./src"
 		}
 	},
@@ -44,7 +45,7 @@
 	"funding": [
 		{
 			"type": "github",
-			"url": "https://github.com/sponsors/PhpGt"
+			"url": "https://github.com/sponsors/phpgt"
 		}
 	]
 }
