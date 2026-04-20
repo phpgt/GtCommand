@@ -1,5 +1,5 @@
 <?php
-namespace Gt\GtCommand\Command;
+namespace GT\GtCommand\Command;
 
 use Gt\Cron\Cli\RunCommand as CronRunCommand;
 
