@@ -21,11 +21,13 @@
 
 	"autoload": {
 		"psr-4": {
+			"GT\\GtCommand\\": "./src",
 			"Gt\\GtCommand\\": "./src"
 		}
 	},
 	"autoload-dev": {
 		"psr-4": {
+			"GT\\GtCommand\\Test\\": "./test/phpunit",
 			"Gt\\GtCommand\\Test\\": "./test/phpunit"
 		}
 	},
@@ -44,7 +46,7 @@
 	"funding": [
 		{
 			"type": "github",
-			"url": "https://github.com/sponsors/PhpGt"
+			"url": "https://github.com/sponsors/phpgt"
 		}
 	]
 }

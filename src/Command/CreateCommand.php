@@ -1,5 +1,5 @@
 <?php
-namespace Gt\GtCommand\Command;
+namespace GT\GtCommand\Command;
 
 use Gt\Cli\Argument\ArgumentValue;
 use Gt\Cli\Argument\ArgumentValueList;
@@ -7,7 +7,7 @@ use Gt\Cli\Command\Command;
 use Gt\Cli\Parameter\NamedParameter;
 use Gt\Cli\Parameter\Parameter;
 use Gt\Cli\Stream;
-use Gt\GtCommand\Blueprint\BlueprintCollection;
+use GT\GtCommand\Blueprint\BlueprintCollection;
 
 class CreateCommand extends Command {
 	/**

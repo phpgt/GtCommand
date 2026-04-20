@@ -1,5 +1,5 @@
 <?php
-namespace Gt\GtCommand\Blueprint;
+namespace GT\GtCommand\Blueprint;
 
 use Countable;
 use Iterator;

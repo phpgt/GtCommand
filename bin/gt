@@ -2,14 +2,14 @@
 <?php
 use Gt\Cli\Application;
 use Gt\Cli\Argument\ArgumentList;
-use Gt\GtCommand\Command\AddCommand;
-use Gt\GtCommand\Command\BuildCommand;
-use Gt\GtCommand\Command\CreateCommand;
-use Gt\GtCommand\Command\MigrateCommand;
-use Gt\GtCommand\Command\ServeCommand;
-use Gt\GtCommand\Command\CronCommand;
-use Gt\GtCommand\Command\RunCommand;
-use Gt\GtCommand\Command\DeployCommand;
+use GT\GtCommand\Command\AddCommand;
+use GT\GtCommand\Command\BuildCommand;
+use GT\GtCommand\Command\CreateCommand;
+use GT\GtCommand\Command\MigrateCommand;
+use GT\GtCommand\Command\ServeCommand;
+use GT\GtCommand\Command\CronCommand;
+use GT\GtCommand\Command\RunCommand;
+use GT\GtCommand\Command\DeployCommand;
 
 foreach([ __DIR__ . "/../../..", __DIR__ . "/../vendor" ] as $vendor) {
 	$autoload = "$vendor/autoload.php";
