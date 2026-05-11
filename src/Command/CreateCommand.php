@@ -24,6 +24,9 @@ class CreateCommand extends Command {
 		if($arguments->contains("blueprint")) {
 			$blueprintInput = $arguments->get("blueprint")->get();
 		}
+		elseif($arguments->contains("empty")) {
+			$blueprintInput = "empty";
+		}
 		else {
 			$this->writeLine("What blueprint would you like to start with? (type the number)");
 
@@ -144,6 +147,12 @@ class CreateCommand extends Command {
 				"blueprint",
 				"b",
 				"A template project to build on"
+			),
+			new Parameter(
+				false,
+				"empty",
+				"e",
+				"Use the empty blueprint"
 			),
 		];
 	}
