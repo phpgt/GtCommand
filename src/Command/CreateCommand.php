@@ -17,31 +17,9 @@ class CreateCommand extends Command {
 	 */
 	public function run(?ArgumentValueList $arguments = null):int {
 		$name = $this->readValidName($arguments->get("projectName", ""));
-		$namespace = $this->readValidNamespace($arguments->get("namespace", ""));
-
 		$blueprintCollection = new BlueprintCollection();
-		$blueprintInput = "0";
-		if($arguments->contains("blueprint")) {
-			$blueprintInput = $arguments->get("blueprint")->get();
-		}
-		elseif($arguments->contains("empty")) {
-			$blueprintInput = "empty";
-		}
-		else {
-			$this->writeLine("What blueprint would you like to start with? (type the number)");
-
-			foreach($blueprintCollection as $i => $blueprint) {
-				$title = $blueprint->getTitle();
-				$description = $blueprint->getDescription();
-				$this->writeLine( " $i: $title - $description");
-			}
-			$blueprintInput = $this->readLine($blueprintInput);
-
-			if($blueprintInput < 0 || $blueprintInput >= count($blueprintCollection)) {
-				$this->writeLine("Cancelling due to invalid blueprint.");
-				exit; // phpcs:ignore
-			}
-		}
+		$blueprintInput = $this->readBlueprintInput($arguments, $blueprintCollection);
+		$namespace = $this->readNamespaceForArguments($arguments);
 
 		if(is_numeric($blueprintInput)) {
 			$selectedBlueprint = $blueprintCollection->getByIndex((int)$blueprintInput);
@@ -221,6 +199,47 @@ class CreateCommand extends Command {
 		$this->writeLine();
 
 		return $namespace;
+	}
+
+	private function readBlueprintInput(
+		ArgumentValueList $arguments,
+		BlueprintCollection $blueprintCollection
+	):string {
+		if($arguments->contains("blueprint")) {
+			return $arguments->get("blueprint")->get();
+		}
+
+		if($arguments->contains("empty")) {
+			return "empty";
+		}
+
+		$this->writeLine("What blueprint would you like to start with? (type the number)");
+
+		foreach($blueprintCollection as $i => $blueprint) {
+			$title = $blueprint->getTitle();
+			$description = $blueprint->getDescription();
+			$this->writeLine( " $i: $title - $description");
+		}
+
+		$blueprintInput = $this->readLine("0");
+		if($blueprintInput < 0 || $blueprintInput >= count($blueprintCollection)) {
+			$this->writeLine("Cancelling due to invalid blueprint.");
+			exit; // phpcs:ignore
+		}
+
+		return $blueprintInput;
+	}
+
+	private function readNamespaceForArguments(ArgumentValueList $arguments):string {
+		if($arguments->contains("empty")) {
+			$namespace = "App";
+			$this->writeLine();
+			$this->writeLine("Using namespace '$namespace'.");
+			$this->writeLine();
+			return $namespace;
+		}
+
+		return $this->readValidNamespace($arguments->get("namespace", ""));
 	}
 
 
