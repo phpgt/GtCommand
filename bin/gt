@@ -9,6 +9,7 @@ use GT\GtCommand\Command\MigrateCommand;
 use GT\GtCommand\Command\ServeCommand;
 use GT\GtCommand\Command\CronCommand;
 use GT\GtCommand\Command\RunCommand;
+use GT\GtCommand\Command\TestCommand;
 use GT\GtCommand\Command\DeployCommand;
 
 foreach([ __DIR__ . "/../../..", __DIR__ . "/../vendor" ] as $vendor) {
@@ -24,6 +25,7 @@ $app = new Application(
 	new ArgumentList(...$argv),
 	new AddCommand(),
 	new CreateCommand(),
+	new TestCommand(),
 	new RunCommand(),
 	new DeployCommand(),
 	new MigrateCommand(),
