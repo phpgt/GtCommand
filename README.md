@@ -7,6 +7,7 @@ The following commands are exposed:
 
 + `gt add` - add a page, API endpoint or cron script from a template
 + `gt create` - create a new WebEngine application
++ `gt test` - run configured PHP and JavaScript test suites
 + `gt serve` - run the inbuilt development server
 + `gt build` - compile client-side assets
 + `gt cron` - invoke scripts or static functions at regular intervals

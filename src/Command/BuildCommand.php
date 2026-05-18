@@ -11,7 +11,15 @@ class BuildCommand extends AbstractProxyCommand {
 
 	public function run(?ArgumentValueList $arguments = null):int {
 		if(!$arguments->contains("default")) {
-			$arguments->set("default", "vendor/phpgt/webengine/build.default.json");
+			$defaultPathPrefix = "vendor/phpgt/webengine/build.default";
+			$defaultPathExtensionPriority = ["ini", "json"];
+			foreach($defaultPathExtensionPriority as $ext) {
+				$defaultPath = "$defaultPathPrefix.$ext";
+				if(file_exists($defaultPath)) {
+					$arguments->set("default", $defaultPath);
+					break;
+				}
+			}
 		}
 
 		return parent::run($arguments);
