@@ -567,16 +567,16 @@
         },
         {
             "name": "phpgt/daemon",
-            "version": "v1.1.5",
+            "version": "v1.1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpgt/Daemon.git",
-                "reference": "413e16b54de6e1fd5c2b646b485f88a86dfedd9a"
+                "reference": "cc932f51523988df8d27c05ee1122b2922806a13"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpgt/Daemon/zipball/413e16b54de6e1fd5c2b646b485f88a86dfedd9a",
-                "reference": "413e16b54de6e1fd5c2b646b485f88a86dfedd9a",
+                "url": "https://api.github.com/repos/phpgt/Daemon/zipball/cc932f51523988df8d27c05ee1122b2922806a13",
+                "reference": "cc932f51523988df8d27c05ee1122b2922806a13",
                 "shasum": ""
             },
             "require": {
@@ -592,6 +592,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
+                    "GT\\Daemon\\": "./src",
                     "Gt\\Daemon\\": "./src"
                 }
             },
@@ -599,28 +600,28 @@
             "description": "Background script execution with cross-platform compatible streaming.",
             "support": {
                 "issues": "https://github.com/phpgt/Daemon/issues",
-                "source": "https://github.com/phpgt/Daemon/tree/v1.1.5"
+                "source": "https://github.com/phpgt/Daemon/tree/v1.1.6"
             },
             "funding": [
                 {
-                    "url": "https://github.com/sponsors/PhpGt",
+                    "url": "https://github.com/sponsors/phpgt",
                     "type": "github"
                 }
             ],
-            "time": "2026-03-11T14:11:10+00:00"
+            "time": "2026-06-04T07:48:06+00:00"
         },
         {
             "name": "phpgt/database",
-            "version": "v1.7.0",
+            "version": "v1.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpgt/Database.git",
-                "reference": "d5a939e91ce3d5c78b77d9e9b3e1a54b13948db9"
+                "reference": "82e14aa1103372e273dbb45ffeaf45e21ef790b5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpgt/Database/zipball/d5a939e91ce3d5c78b77d9e9b3e1a54b13948db9",
-                "reference": "d5a939e91ce3d5c78b77d9e9b3e1a54b13948db9",
+                "url": "https://api.github.com/repos/phpgt/Database/zipball/82e14aa1103372e273dbb45ffeaf45e21ef790b5",
+                "reference": "82e14aa1103372e273dbb45ffeaf45e21ef790b5",
                 "shasum": ""
             },
             "require": {
@@ -636,7 +637,7 @@
                 "phpmd/phpmd": "^2.13",
                 "phpstan/phpstan": "^v1.10",
                 "phpunit/phpunit": "^10.1",
-                "squizlabs/php_codesniffer": "^3.7"
+                "squizlabs/php_codesniffer": "^3.7 || ^4.0"
             },
             "bin": [
                 "bin/migrate"
@@ -644,6 +645,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
+                    "GT\\Database\\": "./src",
                     "Gt\\Database\\": "./src"
                 }
             },
@@ -668,7 +670,7 @@
             "description": "Database API organisation.",
             "support": {
                 "issues": "https://github.com/phpgt/Database/issues",
-                "source": "https://github.com/phpgt/Database/tree/v1.7.0"
+                "source": "https://github.com/phpgt/Database/tree/v1.8.0"
             },
             "funding": [
                 {
@@ -676,7 +678,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-04-07T22:13:10+00:00"
+            "time": "2026-06-10T10:27:56+00:00"
         },
         {
             "name": "phpgt/dataobject",
@@ -1095,16 +1097,16 @@
         },
         {
             "name": "phpgt/typesafegetter",
-            "version": "v1.3.3",
+            "version": "v1.3.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpgt/TypeSafeGetter.git",
-                "reference": "a0d339103828791989cbb81f760d252f3c2f8b8c"
+                "reference": "729261c04b76febaa21a921a3719f625abe9b55e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpgt/TypeSafeGetter/zipball/a0d339103828791989cbb81f760d252f3c2f8b8c",
-                "reference": "a0d339103828791989cbb81f760d252f3c2f8b8c",
+                "url": "https://api.github.com/repos/phpgt/TypeSafeGetter/zipball/729261c04b76febaa21a921a3719f625abe9b55e",
+                "reference": "729261c04b76febaa21a921a3719f625abe9b55e",
                 "shasum": ""
             },
             "require": {
@@ -1119,6 +1121,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
+                    "GT\\TypeSafeGetter\\": "./src",
                     "Gt\\TypeSafeGetter\\": "./src"
                 }
             },
@@ -1135,7 +1138,7 @@
             "description": "An interface for objects that expose type-safe getter methods.",
             "support": {
                 "issues": "https://github.com/phpgt/TypeSafeGetter/issues",
-                "source": "https://github.com/phpgt/TypeSafeGetter/tree/v1.3.3"
+                "source": "https://github.com/phpgt/TypeSafeGetter/tree/v1.3.4"
             },
             "funding": [
                 {
@@ -1143,7 +1146,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-03-10T22:28:01+00:00"
+            "time": "2026-05-04T15:53:13+00:00"
         },
         {
             "name": "psr/container",
