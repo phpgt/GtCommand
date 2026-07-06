@@ -1,7 +1,7 @@
 <?php
 namespace GT\GtCommand\Command;
 
-use Gt\Database\Cli\ExecuteCommand as ExecuteMigrationCommand;
+use GT\Database\Cli\ExecuteCommand as ExecuteMigrationCommand;
 
 class MigrateCommand extends AbstractProxyCommand {
 	public function __construct() {

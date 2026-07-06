@@ -5,8 +5,8 @@ use Gt\Cli\Argument\ArgumentValueList;
 use Gt\Cli\Command\Command;
 use Gt\Cli\Parameter\Parameter;
 use Gt\Cli\Stream;
-use Gt\Daemon\Pool;
-use Gt\Daemon\Process;
+use GT\Daemon\Pool;
+use GT\Daemon\Process;
 
 class RunCommand extends Command {
 	/**

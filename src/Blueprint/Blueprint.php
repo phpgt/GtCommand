@@ -1,7 +1,7 @@
 <?php
 namespace GT\GtCommand\Blueprint;
 
-use Gt\Daemon\Process;
+use GT\Daemon\Process;
 use SplFileObject;
 
 class Blueprint {

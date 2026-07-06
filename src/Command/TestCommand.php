@@ -4,7 +4,7 @@ namespace GT\GtCommand\Command;
 use Gt\Cli\Argument\ArgumentValueList;
 use Gt\Cli\Command\Command;
 use Gt\Cli\Stream;
-use Gt\Daemon\Process;
+use GT\Daemon\Process;
 use JsonException;
 
 class TestCommand extends Command {
