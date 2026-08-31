@@ -11,8 +11,8 @@ use GT\Daemon\Process;
 class RunCommand extends Command {
 	/**
 	 * TODO: Simplify this function.
-	 * @SuppressWarnings(PHPMD.NPathComplexity)
-	 * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+	 * @SuppressWarnings("PHPMD.NPathComplexity")
+	 * @SuppressWarnings("PHPMD.CyclomaticComplexity")
 	 */
 	public function run(?ArgumentValueList $arguments = null):int {
 		global $argv;

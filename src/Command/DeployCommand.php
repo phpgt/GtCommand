@@ -7,7 +7,7 @@ use Gt\Cli\Parameter\NamedParameter;
 use Gt\Cli\Parameter\Parameter;
 
 class DeployCommand extends AbstractProxyCommand {
-	/** @SuppressWarnings(PHPMD.UnusedFormalParameter) */
+	/** @SuppressWarnings("PHPMD.UnusedFormalParameter") */
 	public function __construct() {
 		$this->proxyCommand = new class extends Command {
 			public function getDescription():string {

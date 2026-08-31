@@ -1,7 +1,7 @@
 <?php
 namespace GT\GtCommand\Command;
 
-use Gt\Cron\Cli\RunCommand as CronRunCommand;
+use GT\Cron\Cli\RunCommand as CronRunCommand;
 
 class CronCommand extends AbstractProxyCommand {
 	public function __construct() {

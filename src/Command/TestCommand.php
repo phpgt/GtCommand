@@ -8,7 +8,7 @@ use GT\Daemon\Process;
 use JsonException;
 
 class TestCommand extends Command {
-	/** @SuppressWarnings(PHPMD.UnusedFormalParameter) */
+	/** @SuppressWarnings("PHPMD.UnusedFormalParameter") */
 	public function run(?ArgumentValueList $arguments = null):int {
 		unset($arguments);
 

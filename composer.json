@@ -14,8 +14,8 @@
 		"phpgt/build": "^1.0"
 	},
 	"require-dev": {
-		"phpstan/phpstan": "^v1.10",
-		"phpmd/phpmd": "^2.13",
+		"phpstan/phpstan": "^2.2",
+		"phpmd/phpmd": "^2.15",
 		"squizlabs/php_codesniffer": "^4.0"
 	},
 
@@ -32,13 +32,13 @@
 	},
 
 	"scripts": {
-		"phpstan": "vendor/bin/phpstan analyse --level 6 src --memory-limit 256M",
 		"phpcs": "vendor/bin/phpcs src --standard=phpcs.xml",
 		"phpmd": "vendor/bin/phpmd src/ text phpmd.xml",
+		"phpstan": "vendor/bin/phpstan analyse --level 6 src --memory-limit 256M",
 		"test": [
-			"@phpstan",
 			"@phpcs",
-			"@phpmd"
+			"@phpmd",
+			"@phpstan"
 		]
 	},
 

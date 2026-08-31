@@ -8,7 +8,7 @@ use GT\Daemon\Process;
 use JsonException;
 
 class InitCommand extends Command {
-	/** @SuppressWarnings(PHPMD.UnusedFormalParameter) */
+	/** @SuppressWarnings("PHPMD.UnusedFormalParameter") */
 	// phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundInExtendedClass
 	public function run(?ArgumentValueList $arguments = null):int {
 		$this->writeLine("Initialising WebEngine in " . getcwd() . "...");
