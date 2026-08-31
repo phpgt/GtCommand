@@ -11,7 +11,7 @@ use GT\Daemon\CommandNotFoundException;
 use GT\Daemon\Process;
 use GT\GtCommand\Blueprint\BlueprintCollection;
 
-/** @SuppressWarnings(PHPMD.ExcessiveClassComplexity) */
+/** @SuppressWarnings("PHPMD.ExcessiveClassComplexity") */
 class CreateCommand extends Command {
 	const MIGRATION_DIRECTORY_NOT_FOUND_EXCEPTION
 		= "GT\Database\Migration\MigrationDirectoryNotFoundException";
