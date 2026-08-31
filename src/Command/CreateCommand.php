@@ -7,9 +7,15 @@ use Gt\Cli\Command\Command;
 use Gt\Cli\Parameter\NamedParameter;
 use Gt\Cli\Parameter\Parameter;
 use Gt\Cli\Stream;
+use GT\Daemon\CommandNotFoundException;
+use GT\Daemon\Process;
 use GT\GtCommand\Blueprint\BlueprintCollection;
 
+/** @SuppressWarnings("PHPMD.ExcessiveClassComplexity") */
 class CreateCommand extends Command {
+	const MIGRATION_DIRECTORY_NOT_FOUND_EXCEPTION
+		= "GT\Database\Migration\MigrationDirectoryNotFoundException";
+
 	/**
 	 * TODO: Simplify this function
 	 * @SuppressWarnings("PHPMD.CyclomaticComplexity")
@@ -33,29 +39,18 @@ class CreateCommand extends Command {
 		sleep(1);
 
 		$process = $selectedBlueprint->createProject($name);
-		$process->exec();
-
-		do {
-			$this->write($process->getOutput());
-			$this->write($process->getErrorOutput(), Stream::ERROR);
-			usleep(100_000);
-		}
-		while($process->isRunning());
+		$this->execAndStreamProcess($process);
 
 		$process = $selectedBlueprint->updateDependencies($name);
-		$process->exec();
+		$code = $this->execAndStreamProcess($process);
 
-		do {
-			$this->write($process->getOutput());
-			$this->write($process->getErrorOutput(), Stream::ERROR);
-			usleep(100_000);
-		}
-		while($process->isRunning());
-
-		if($code = $process->getExitCode()) {
+		if($code) {
 			$this->writeLine("There was an error installing the blueprint (exit code $code)");
 			exit($code); // phpcs:ignore
 		}
+
+		$this->runMigration($name);
+		$this->runNpmInstall($name);
 
 		$this->writeLine();
 		$this->writeLine("Your new application is created!");
@@ -242,5 +237,178 @@ class CreateCommand extends Command {
 		return $this->readValidNamespace($arguments->get("namespace", ""));
 	}
 
+	private function runMigration(string $dir):void {
+		$this->writeLine();
+		$this->writeLine("Running database migrations...");
+
+		$process = new Process("gt", "migrate");
+		$process->setExecCwd($dir);
+		$code = $this->execAndStreamProcess(
+			$process,
+			self::MIGRATION_DIRECTORY_NOT_FOUND_EXCEPTION
+		);
+
+		if($code) {
+			$this->writeLine("There was an error running migrations (exit code $code)");
+			exit($code); // phpcs:ignore
+		}
+	}
+
+	private function runNpmInstall(string $dir):void {
+		if(!is_file("$dir/package.json")) {
+			return;
+		}
+
+		if(!$this->isCommandAvailable("npm")) {
+			return;
+		}
+
+		$this->writeLine();
+		$this->writeLine("Installing npm dependencies...");
+
+		$process = new Process("npm", "install");
+		$process->setExecCwd($dir);
+		$code = $this->execAndStreamProcess($process);
+
+		if($code) {
+			$this->writeLine("There was an error installing npm dependencies (exit code $code)");
+			exit($code); // phpcs:ignore
+		}
+	}
+
+	private function isCommandAvailable(string $command):bool {
+		try {
+			$process = new Process($command, "--version");
+			$process->exec();
+		}
+		catch(CommandNotFoundException) {
+			return false;
+		}
+
+		do {
+			$process->getOutput();
+			$process->getErrorOutput();
+			usleep(100_000);
+		}
+		while($process->isRunning());
+
+		return $process->getExitCode() === 0;
+	}
+
+	private function execAndStreamProcess(
+		Process $process,
+		?string $suppressErrorWhenFirstLineContains = null
+	):int {
+		$errorBuffer = "";
+		$suppressError = null;
+		$process->exec();
+
+		do {
+			$this->write($process->getOutput());
+			$this->writeErrorOutput(
+				$process->getErrorOutput(),
+				$suppressErrorWhenFirstLineContains,
+				$errorBuffer,
+				$suppressError
+			);
+			usleep(100_000);
+		}
+		while($process->isRunning());
+
+		$this->write($process->getOutput());
+		$this->writeErrorOutput(
+			$process->getErrorOutput(),
+			$suppressErrorWhenFirstLineContains,
+			$errorBuffer,
+			$suppressError
+		);
+
+		$this->flushErrorBuffer(
+			$suppressErrorWhenFirstLineContains,
+			$errorBuffer,
+			$suppressError
+		);
+
+		if($suppressError) {
+			return 0;
+		}
+
+		return $process->getExitCode() ?? 127;
+	}
+
+	private function writeErrorOutput(
+		string $errorOutput,
+		?string $suppressErrorWhenFirstLineContains,
+		string &$errorBuffer,
+		?bool &$suppressError
+	):void {
+		if($errorOutput === "") {
+			return;
+		}
+
+		if(!$suppressErrorWhenFirstLineContains || $suppressError === false) {
+			$this->write($errorOutput, Stream::ERROR);
+			return;
+		}
+
+		if($suppressError === true) {
+			return;
+		}
+
+		$errorBuffer .= $errorOutput;
+		if(!str_contains($errorBuffer, PHP_EOL)) {
+			return;
+		}
+
+		$suppressError = $this->shouldSuppressErrorOutput(
+			$errorBuffer,
+			$suppressErrorWhenFirstLineContains
+		);
+
+		if(!$suppressError) {
+			$this->write($errorBuffer, Stream::ERROR);
+		}
+
+		$errorBuffer = "";
+	}
+
+	private function flushErrorBuffer(
+		?string $suppressErrorWhenFirstLineContains,
+		string &$errorBuffer,
+		?bool &$suppressError
+	):void {
+		if($errorBuffer === "") {
+			return;
+		}
+
+		if(!$suppressErrorWhenFirstLineContains) {
+			$this->write($errorBuffer, Stream::ERROR);
+			$errorBuffer = "";
+			return;
+		}
+
+		$suppressError ??= $this->shouldSuppressErrorOutput(
+			$errorBuffer,
+			$suppressErrorWhenFirstLineContains
+		);
+
+		if(!$suppressError) {
+			$this->write($errorBuffer, Stream::ERROR);
+		}
+
+		$errorBuffer = "";
+	}
+
+	private function shouldSuppressErrorOutput(
+		string $errorBuffer,
+		string $suppressErrorWhenFirstLineContains
+	):bool {
+		$firstLine = strtok($errorBuffer, PHP_EOL);
+
+		return str_contains(
+			$firstLine ?: "",
+			$suppressErrorWhenFirstLineContains
+		);
+	}
 
 }
