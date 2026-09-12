@@ -2,6 +2,7 @@
 namespace GT\GtCommand\Command;
 
 use Closure;
+use Composer\Autoload\ClassLoader;
 use Gt\Cli\Argument\ArgumentValueList;
 use Gt\Cli\Command\Command;
 use Gt\Cli\Parameter\Parameter;
@@ -46,15 +47,7 @@ class MigrateCommand extends Command {
 				}
 			}
 
-			if($arguments?->contains("no-orm")) {
-				return 0;
-			}
-			$ormCommand = ($this->ormCommandFactory)();
-			if($ormCommand === null) {
-				return 0;
-			}
-			$ormCommand->setStream($this->stream ?? null);
-			return $ormCommand->run($arguments);
+			return $this->runOrm($projectRoot, $arguments);
 		}
 		catch(Throwable $exception) {
 			$this->output(
@@ -63,6 +56,34 @@ class MigrateCommand extends Command {
 			);
 			return 1;
 		}
+	}
+
+	private function runOrm(string $projectRoot, ?ArgumentValueList $arguments):int {
+		if($arguments?->contains("no-orm")) {
+			return 0;
+		}
+		if(!$this->projectHasOrm($projectRoot)) {
+			return 0;
+		}
+		$ormCommand = ($this->ormCommandFactory)();
+		if($ormCommand === null) {
+			return 0;
+		}
+		$ormCommand->setStream($this->stream ?? null);
+		return $ormCommand->run($arguments);
+	}
+
+	private function projectHasOrm(string $projectRoot):bool {
+		$autoload = "$projectRoot/vendor/autoload.php";
+		if(!is_file($autoload)) {
+			return false;
+		}
+
+		// Composer returns the loader even if it has already been registered.
+		// Ask this loader directly: class_exists() also searches global packages.
+		$loader = require $autoload;
+		return $loader instanceof ClassLoader
+			&& $loader->findFile("GT\\Orm\\Cli\\MigrateCommand") !== false;
 	}
 
 	public function getName():string {

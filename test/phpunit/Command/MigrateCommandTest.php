@@ -9,12 +9,16 @@ use GT\GtCommand\Command\MigrateCommand;
 use GT\GtCommand\Command\SqlMigrationDetector;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
+use Composer\Autoload\ClassLoader;
 
 class MigrateCommandTest extends TestCase {
 	private string $projectRoot;
 	private string $previousDirectory;
+	/** @var list<callable> */
+	private array $previousAutoloaders;
 
 	protected function setUp():void {
+		$this->previousAutoloaders = spl_autoload_functions();
 		$this->projectRoot = sys_get_temp_dir() . "/phpgt-migrate-command-" . uniqid();
 		mkdir($this->projectRoot, recursive: true);
 		$this->previousDirectory = getcwd() ?: __DIR__;
@@ -22,7 +26,63 @@ class MigrateCommandTest extends TestCase {
 	}
 
 	protected function tearDown():void {
+		foreach(spl_autoload_functions() as $autoload) {
+			if(!in_array($autoload, $this->previousAutoloaders, true)) {
+				spl_autoload_unregister($autoload);
+			}
+		}
 		chdir($this->previousDirectory);
+	}
+
+	public function testGloballyAvailableOrmDoesNotEnableSqlOnlyProject():void {
+		$this->createSqlMigration();
+		$this->createProjectAutoloader(false);
+		$globalLoader = new ClassLoader();
+		$globalLoader->addClassMap(["GT\\Orm\\Cli\\MigrateCommand" => __FILE__]);
+		$globalLoader->register();
+		$sql = new RecordingCommand("sql");
+		$command = new MigrateCommand($sql, ormCommandFactory: static function():?Command {
+			self::fail("A globally available ORM must not enable project migrations.");
+		});
+
+		self::assertSame(0, $command->run());
+		self::assertSame(1, $sql->runCount);
+	}
+
+	public function testMissingProjectAutoloaderSkipsOrmFactory():void {
+		$command = new MigrateCommand(ormCommandFactory: static function():?Command {
+			self::fail("ORM must not run without a project autoloader.");
+		});
+
+		self::assertSame(0, $command->run());
+	}
+
+	public function testProjectAutoloaderIsRegisteredBeforeOrmFactoryAndCanBeLoadedAgain():void {
+		$this->createProjectAutoloader();
+		$loader = require $this->projectRoot . "/vendor/autoload.php";
+		$orm = new RecordingCommand("orm");
+		$command = new MigrateCommand(ormCommandFactory: static function() use ($loader, $orm):Command {
+			self::assertContains([$loader, "loadClass"], spl_autoload_functions());
+			return $orm;
+		});
+
+		self::assertSame(0, $command->run());
+		self::assertSame(1, $orm->runCount);
+	}
+
+	public function testProjectClassesCanBeAutoloadedDuringOrmDiscovery():void {
+		$this->createProjectAutoloader();
+		$className = "MigrationProjectFixture" . uniqid();
+		file_put_contents($this->projectRoot . "/vendor/$className.php", "<?php class $className {}");
+		$orm = new RecordingCommand("orm");
+		$command = new MigrateCommand(ormCommandFactory: static function() use ($className, $orm):Command {
+			self::assertTrue(class_exists($className));
+			return $orm;
+		});
+
+		self::assertFalse(class_exists($className, false));
+		self::assertSame(0, $command->run());
+		self::assertSame(1, $orm->runCount);
 	}
 
 	public function testNeitherMigrationStyleIsANoOp():void {
@@ -108,11 +168,26 @@ class MigrateCommandTest extends TestCase {
 	}
 
 	private function command(RecordingCommand $sql, ?RecordingCommand $orm):MigrateCommand {
+		if($orm !== null) {
+			$this->createProjectAutoloader();
+		}
 		return new MigrateCommand(
 			$sql,
 			new SqlMigrationDetector(),
 			static fn():?Command => $orm,
 		);
+	}
+
+	private function createProjectAutoloader(bool $withOrm = true):void {
+		$directory = $this->projectRoot . "/vendor";
+		mkdir($directory, recursive: true);
+		$classMap = $withOrm ? ["GT\\Orm\\Cli\\MigrateCommand" => __FILE__] : [];
+		file_put_contents($directory . "/autoload.php", "<?php\n"
+			. '$loader = new \\Composer\\Autoload\\ClassLoader();' . "\n"
+			. '$loader->addPsr4("", __DIR__);' . "\n"
+			. '$loader->addClassMap(' . var_export($classMap, true) . ");\n"
+			. '$loader->register();' . "\n"
+			. 'return $loader;' . "\n");
 	}
 
 	private function createSqlMigration():void {
