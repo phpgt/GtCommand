@@ -450,16 +450,16 @@
         },
         {
             "name": "phpgt/config",
-            "version": "v1.2.0",
+            "version": "v1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpgt/Config.git",
-                "reference": "21fa25f3dca864ecc9c54800a4394eb5601f2c4d"
+                "reference": "5d644af3fdc35bc3c648868ae670ea4cd162937a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpgt/Config/zipball/21fa25f3dca864ecc9c54800a4394eb5601f2c4d",
-                "reference": "21fa25f3dca864ecc9c54800a4394eb5601f2c4d",
+                "url": "https://api.github.com/repos/phpgt/Config/zipball/5d644af3fdc35bc3c648868ae670ea4cd162937a",
+                "reference": "5d644af3fdc35bc3c648868ae670ea4cd162937a",
                 "shasum": ""
             },
             "require": {
@@ -479,6 +479,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
+                    "GT\\Config\\": "./src",
                     "Gt\\Config\\": "./src"
                 }
             },
@@ -495,7 +496,7 @@
             "description": "Manage configuration with ini files and environment variables.",
             "support": {
                 "issues": "https://github.com/phpgt/Config/issues",
-                "source": "https://github.com/phpgt/Config/tree/v1.2.0"
+                "source": "https://github.com/phpgt/Config/tree/v1.3.0"
             },
             "funding": [
                 {
@@ -503,7 +504,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-03-16T11:04:06+00:00"
+            "time": "2026-06-29T20:06:02+00:00"
         },
         {
             "name": "phpgt/cron",
@@ -603,16 +604,16 @@
         },
         {
             "name": "phpgt/database",
-            "version": "v1.8.0",
+            "version": "v1.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpgt/Database.git",
-                "reference": "82e14aa1103372e273dbb45ffeaf45e21ef790b5"
+                "reference": "edea409878beb7c99ceb06a6a593112bb8b0cd03"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpgt/Database/zipball/82e14aa1103372e273dbb45ffeaf45e21ef790b5",
-                "reference": "82e14aa1103372e273dbb45ffeaf45e21ef790b5",
+                "url": "https://api.github.com/repos/phpgt/Database/zipball/edea409878beb7c99ceb06a6a593112bb8b0cd03",
+                "reference": "edea409878beb7c99ceb06a6a593112bb8b0cd03",
                 "shasum": ""
             },
             "require": {
@@ -661,7 +662,7 @@
             "description": "Database API organisation.",
             "support": {
                 "issues": "https://github.com/phpgt/Database/issues",
-                "source": "https://github.com/phpgt/Database/tree/v1.8.0"
+                "source": "https://github.com/phpgt/Database/tree/v1.8.1"
             },
             "funding": [
                 {
@@ -669,7 +670,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-06-10T10:27:56+00:00"
+            "time": "2026-08-31T14:56:25+00:00"
         },
         {
             "name": "phpgt/dataobject",
@@ -989,20 +990,20 @@
         },
         {
             "name": "phpgt/sqlbuilder",
-            "version": "v1.0.1",
+            "version": "v1.1.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/PhpGt/SqlBuilder.git",
-                "reference": "ac60cad74bb1ac2d8d667e142a56fd6c9d23291a"
+                "url": "https://github.com/phpgt/SqlBuilder.git",
+                "reference": "557289307cc188f708586d1d4e59b0bf77a3d608"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PhpGt/SqlBuilder/zipball/ac60cad74bb1ac2d8d667e142a56fd6c9d23291a",
-                "reference": "ac60cad74bb1ac2d8d667e142a56fd6c9d23291a",
+                "url": "https://api.github.com/repos/phpgt/SqlBuilder/zipball/557289307cc188f708586d1d4e59b0bf77a3d608",
+                "reference": "557289307cc188f708586d1d4e59b0bf77a3d608",
                 "shasum": ""
             },
             "require": {
-                "php": ">=8.0"
+                "php": ">=8.4"
             },
             "require-dev": {
                 "phpmd/phpmd": "^2.13",
@@ -1013,22 +1014,23 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
+                    "GT\\SqlBuilder\\": "./src",
                     "Gt\\SqlBuilder\\": "./src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
             "description": "Object oriented representation of SQL queries.",
             "support": {
-                "issues": "https://github.com/PhpGt/SqlBuilder/issues",
-                "source": "https://github.com/PhpGt/SqlBuilder/tree/v1.0.1"
+                "issues": "https://github.com/phpgt/SqlBuilder/issues",
+                "source": "https://github.com/phpgt/SqlBuilder/tree/v1.1.0"
             },
             "funding": [
                 {
-                    "url": "https://github.com/sponsors/PhpGt",
+                    "url": "https://github.com/sponsors/phpgt",
                     "type": "github"
                 }
             ],
-            "time": "2023-09-17T12:33:25+00:00"
+            "time": "2026-05-06T17:09:03+00:00"
         },
         {
             "name": "phpgt/sync",
