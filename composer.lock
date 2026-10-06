@@ -450,16 +450,16 @@
         },
         {
             "name": "phpgt/config",
-            "version": "v1.2.0",
+            "version": "v1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpgt/Config.git",
-                "reference": "21fa25f3dca864ecc9c54800a4394eb5601f2c4d"
+                "reference": "5d644af3fdc35bc3c648868ae670ea4cd162937a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpgt/Config/zipball/21fa25f3dca864ecc9c54800a4394eb5601f2c4d",
-                "reference": "21fa25f3dca864ecc9c54800a4394eb5601f2c4d",
+                "url": "https://api.github.com/repos/phpgt/Config/zipball/5d644af3fdc35bc3c648868ae670ea4cd162937a",
+                "reference": "5d644af3fdc35bc3c648868ae670ea4cd162937a",
                 "shasum": ""
             },
             "require": {
@@ -479,6 +479,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
+                    "GT\\Config\\": "./src",
                     "Gt\\Config\\": "./src"
                 }
             },
@@ -495,7 +496,7 @@
             "description": "Manage configuration with ini files and environment variables.",
             "support": {
                 "issues": "https://github.com/phpgt/Config/issues",
-                "source": "https://github.com/phpgt/Config/tree/v1.2.0"
+                "source": "https://github.com/phpgt/Config/tree/v1.3.0"
             },
             "funding": [
                 {
@@ -503,7 +504,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-03-16T11:04:06+00:00"
+            "time": "2026-06-29T20:06:02+00:00"
         },
         {
             "name": "phpgt/cron",
