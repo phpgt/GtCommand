@@ -14,6 +14,22 @@ The following commands are exposed:
 + `gt cron` - invoke scripts or static functions at regular intervals
 + `gt run` - run all background scripts at once - a combination of `serve`, `build --watch` and `cron --watch --now`
 + `gt deploy` - instantly deploy your application to the internet
++ `gt migrate` - apply optional SQL-file and ORM Entity migrations
+
+## `gt migrate`
+
+`gt migrate` supports two independent migration styles. Numbered SQL files in
+`query/_migration` are applied when that directory contains migrations. When
+`phpgt/orm` is installed, Entity classes in `app.class_dir` are also compared
+with the latest schema recorded in the ORM's separate `_orm` table.
+
+A project may use SQL migrations, ORM migrations, both, or neither. SQL files
+run first when both styles are present. If they fail, ORM migration does not
+run. Useful ORM options are:
+
++ `--no-orm` - skip Entity migrations
++ `--orm-plan` - show the Entity schema changes without applying them
++ `--orm-baseline` - record an existing matching schema without changing tables
 
 ## `gt add`
 
