@@ -894,16 +894,16 @@
         },
         {
             "name": "phpgt/server",
-            "version": "v1.2.0",
+            "version": "v1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpgt/Server.git",
-                "reference": "fdeafc0f9fd45cdb135185a178e126cc35483597"
+                "reference": "33a99d1909ebc831e700074fc01fd5dc3acb7266"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpgt/Server/zipball/fdeafc0f9fd45cdb135185a178e126cc35483597",
-                "reference": "fdeafc0f9fd45cdb135185a178e126cc35483597",
+                "url": "https://api.github.com/repos/phpgt/Server/zipball/33a99d1909ebc831e700074fc01fd5dc3acb7266",
+                "reference": "33a99d1909ebc831e700074fc01fd5dc3acb7266",
                 "shasum": ""
             },
             "require": {
@@ -921,6 +921,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
+                    "GT\\Server\\": "./src/",
                     "Gt\\Server\\": "./src/"
                 }
             },
@@ -928,15 +929,15 @@
             "description": "Development HTTP server.",
             "support": {
                 "issues": "https://github.com/phpgt/Server/issues",
-                "source": "https://github.com/phpgt/Server/tree/v1.2.0"
+                "source": "https://github.com/phpgt/Server/tree/v1.3.0"
             },
             "funding": [
                 {
-                    "url": "https://github.com/sponsors/PhpGt",
+                    "url": "https://github.com/sponsors/phpgt",
                     "type": "github"
                 }
             ],
-            "time": "2026-04-07T22:04:12+00:00"
+            "time": "2026-05-08T13:03:40+00:00"
         },
         {
             "name": "phpgt/servicecontainer",
