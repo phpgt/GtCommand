@@ -1,7 +1,7 @@
 <?php
 namespace GT\GtCommand\Command;
 
-use Gt\Server\Cli\StartCommand as StartServerCommand;
+use GT\Server\Cli\StartCommand as StartServerCommand;
 
 class ServeCommand extends AbstractProxyCommand {
 	public function __construct() {
