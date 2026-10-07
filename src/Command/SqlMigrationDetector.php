@@ -2,8 +2,8 @@
 namespace GT\GtCommand\Command;
 
 use Gt\Cli\Argument\ArgumentValueList;
-use Gt\Config\Config;
-use Gt\Config\ConfigFactory;
+use GT\Config\Config;
+use GT\Config\ConfigFactory;
 
 class SqlMigrationDetector {
 	public function hasMigrations(
