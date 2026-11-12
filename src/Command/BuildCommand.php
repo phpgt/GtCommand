@@ -1,7 +1,7 @@
 <?php
 namespace GT\GtCommand\Command;
 
-use Gt\Cli\Argument\ArgumentValueList;
+use GT\Cli\Argument\ArgumentValueList;
 use GT\Build\Cli\RunCommand as CliRunCommand;
 
 class BuildCommand extends AbstractProxyCommand {

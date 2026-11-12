@@ -3,10 +3,11 @@ namespace GT\GtCommand\Command;
 
 use Closure;
 use Composer\Autoload\ClassLoader;
-use Gt\Cli\Argument\ArgumentValueList;
-use Gt\Cli\Command\Command;
-use Gt\Cli\Parameter\Parameter;
-use Gt\Cli\Stream;
+use GT\Cli\Argument\ArgumentValueList;
+use GT\Cli\Command\Command;
+use GT\Cli\Parameter\Parameter;
+use GT\Cli\Stream;
+use GT\Cli\StreamName;
 use GT\Database\Cli\ExecuteCommand as ExecuteMigrationCommand;
 use Throwable;
 
@@ -34,7 +35,7 @@ class MigrateCommand extends Command {
 	public function run(?ArgumentValueList $arguments = null):int {
 		$projectRoot = getcwd();
 		if($projectRoot === false) {
-			$this->output("Unable to determine the project directory.", streamName: Stream::ERROR);
+			$this->output("Unable to determine the project directory.", streamName: StreamName::ERROR);
 			return 1;
 		}
 
@@ -52,7 +53,7 @@ class MigrateCommand extends Command {
 		catch(Throwable $exception) {
 			$this->output(
 				"Migration failed: " . $exception->getMessage(),
-				streamName: Stream::ERROR,
+				streamName: StreamName::ERROR,
 			);
 			return 1;
 		}

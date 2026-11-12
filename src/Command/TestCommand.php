@@ -1,9 +1,10 @@
 <?php
 namespace GT\GtCommand\Command;
 
-use Gt\Cli\Argument\ArgumentValueList;
-use Gt\Cli\Command\Command;
-use Gt\Cli\Stream;
+use GT\Cli\Argument\ArgumentValueList;
+use GT\Cli\Command\Command;
+use GT\Cli\Stream;
+use GT\Cli\StreamName;
 use GT\Daemon\Process;
 use JsonException;
 
@@ -14,8 +15,8 @@ class TestCommand extends Command {
 
 		$testSuiteList = $this->getTestSuiteList();
 		if(!$testSuiteList) {
-			$this->writeLine("No test suites were found.", Stream::ERROR);
-			$this->writeLine("Checked composer.json and package.json for a test script.", Stream::ERROR);
+			$this->writeLine("No test suites were found.", StreamName::ERROR);
+			$this->writeLine("Checked composer.json and package.json for a test script.", StreamName::ERROR);
 			return 1;
 		}
 
@@ -32,7 +33,7 @@ class TestCommand extends Command {
 
 		$this->writeLine();
 		if($failedCount > 0) {
-			$this->writeLine("Test result: $passedCount passed, $failedCount failed.", Stream::ERROR);
+			$this->writeLine("Test result: $passedCount passed, $failedCount failed.", StreamName::ERROR);
 			return 1;
 		}
 
@@ -94,7 +95,7 @@ class TestCommand extends Command {
 
 		$contents = file_get_contents($fileName);
 		if($contents === false) {
-			$this->writeLine("Unable to read $fileName.", Stream::ERROR);
+			$this->writeLine("Unable to read $fileName.", StreamName::ERROR);
 			return false;
 		}
 
@@ -102,7 +103,7 @@ class TestCommand extends Command {
 			$json = json_decode($contents, true, 512, JSON_THROW_ON_ERROR);
 		}
 		catch(JsonException $exception) {
-			$this->writeLine("Unable to parse $fileName: " . $exception->getMessage(), Stream::ERROR);
+			$this->writeLine("Unable to parse $fileName: " . $exception->getMessage(), StreamName::ERROR);
 			return false;
 		}
 
@@ -123,7 +124,7 @@ class TestCommand extends Command {
 
 		do {
 			$this->write($process->getOutput());
-			$this->write($process->getErrorOutput(), Stream::ERROR);
+			$this->write($process->getErrorOutput(), StreamName::ERROR);
 			usleep(100_000);
 		}
 		while($process->isRunning());
@@ -134,7 +135,7 @@ class TestCommand extends Command {
 			return true;
 		}
 
-		$this->writeLine("{$testSuite["name"]} tests failed with exit code $exitCode.", Stream::ERROR);
+		$this->writeLine("{$testSuite["name"]} tests failed with exit code $exitCode.", StreamName::ERROR);
 		return false;
 	}
 }
