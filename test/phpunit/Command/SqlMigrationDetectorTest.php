@@ -1,7 +1,7 @@
 <?php
 namespace GT\GtCommand\Test\Command;
 
-use Gt\Cli\Argument\ArgumentValueList;
+use GT\Cli\Argument\ArgumentValueList;
 use GT\GtCommand\Command\SqlMigrationDetector;
 use PHPUnit\Framework\TestCase;
 

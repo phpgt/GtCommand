@@ -1,3 +1,5 @@
 /.idea
 /vendor
 /.gt-update-check
+
+/test/phpunit/.phpunit.cache/

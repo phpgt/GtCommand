@@ -1,10 +1,11 @@
 <?php
 namespace GT\GtCommand\Command;
 
-use Gt\Cli\Argument\ArgumentValueList;
-use Gt\Cli\Command\Command;
-use Gt\Cli\Parameter\Parameter;
-use Gt\Cli\Stream;
+use GT\Cli\Argument\ArgumentValueList;
+use GT\Cli\Command\Command;
+use GT\Cli\Parameter\Parameter;
+use GT\Cli\Stream;
+use GT\Cli\StreamName;
 use GT\Daemon\Pool;
 use GT\Daemon\Process;
 
@@ -78,16 +79,16 @@ class RunCommand extends Command {
 		}
 		else {
 			$this->writeLine(" ❌");
-			$this->write($processList["serve"]->getOutput(Process::PIPE_ERROR), Stream::ERROR);
+			$this->write($processList["serve"]->getOutput(Process::PIPE_ERROR), StreamName::ERROR);
 			return 1;
 		}
 
 		$this->write($processList["serve"]->getOutput());
-		$this->write($processList["serve"]->getOutput(Process::PIPE_ERROR), Stream::ERROR);
+		$this->write($processList["serve"]->getOutput(Process::PIPE_ERROR), StreamName::ERROR);
 
 		do {
 			$this->write($pool->read());
-			$this->write($pool->read(Process::PIPE_ERROR), Stream::ERROR);
+			$this->write($pool->read(Process::PIPE_ERROR), StreamName::ERROR);
 			usleep(100_000);
 			/** @var bool $isRunning
 			 * @noinspection PhpRedundantVariableDocTypeInspection

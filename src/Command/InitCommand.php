@@ -1,9 +1,10 @@
 <?php
 namespace GT\GtCommand\Command;
 
-use Gt\Cli\Argument\ArgumentValueList;
-use Gt\Cli\Command\Command;
-use Gt\Cli\Stream;
+use GT\Cli\Argument\ArgumentValueList;
+use GT\Cli\Command\Command;
+use GT\Cli\Stream;
+use GT\Cli\StreamName;
 use GT\Daemon\Process;
 use JsonException;
 
@@ -15,7 +16,7 @@ class InitCommand extends Command {
 
 		$exitCode = $this->runComposer("require", "--no-interaction", "phpgt/webengine");
 		if($exitCode !== 0) {
-			$this->writeLine("Composer could not install WebEngine.", Stream::ERROR);
+			$this->writeLine("Composer could not install WebEngine.", StreamName::ERROR);
 			return $exitCode;
 		}
 
@@ -25,7 +26,7 @@ class InitCommand extends Command {
 
 		$exitCode = $this->runComposer("dump-autoload", "--no-interaction");
 		if($exitCode !== 0) {
-			$this->writeLine("Composer could not regenerate the autoloader.", Stream::ERROR);
+			$this->writeLine("Composer could not regenerate the autoloader.", StreamName::ERROR);
 			return $exitCode;
 		}
 
@@ -70,13 +71,13 @@ class InitCommand extends Command {
 
 		do {
 			$this->write($process->getOutput());
-			$this->write($process->getErrorOutput(), Stream::ERROR);
+			$this->write($process->getErrorOutput(), StreamName::ERROR);
 			usleep(100_000);
 		}
 		while($process->isRunning());
 
 		$this->write($process->getOutput());
-		$this->write($process->getErrorOutput(), Stream::ERROR);
+		$this->write($process->getErrorOutput(), StreamName::ERROR);
 
 		return $process->getExitCode() ?? 1;
 	}
@@ -85,7 +86,7 @@ class InitCommand extends Command {
 		$composerPath = getcwd() . DIRECTORY_SEPARATOR . "composer.json";
 		$composerJson = file_get_contents($composerPath);
 		if($composerJson === false) {
-			$this->writeLine("Could not read composer.json.", Stream::ERROR);
+			$this->writeLine("Could not read composer.json.", StreamName::ERROR);
 			return false;
 		}
 
@@ -96,7 +97,7 @@ class InitCommand extends Command {
 		catch(JsonException $exception) {
 			$this->writeLine(
 				"Could not parse composer.json: " . $exception->getMessage(),
-				Stream::ERROR
+				StreamName::ERROR
 			);
 			return false;
 		}
@@ -110,7 +111,7 @@ class InitCommand extends Command {
 		);
 
 		if(file_put_contents($composerPath, $encodedConfig . PHP_EOL) === false) {
-			$this->writeLine("Could not update composer.json.", Stream::ERROR);
+			$this->writeLine("Could not update composer.json.", StreamName::ERROR);
 			return false;
 		}
 

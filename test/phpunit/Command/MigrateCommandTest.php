@@ -1,10 +1,10 @@
 <?php
 namespace GT\GtCommand\Test\Command;
 
-use Gt\Cli\Argument\ArgumentValueList;
-use Gt\Cli\Command\Command;
-use Gt\Cli\Parameter\NamedParameter;
-use Gt\Cli\Parameter\Parameter;
+use GT\Cli\Argument\ArgumentValueList;
+use GT\Cli\Command\Command;
+use GT\Cli\Parameter\NamedParameter;
+use GT\Cli\Parameter\Parameter;
 use GT\GtCommand\Command\MigrateCommand;
 use GT\GtCommand\Command\SqlMigrationDetector;
 use PHPUnit\Framework\TestCase;

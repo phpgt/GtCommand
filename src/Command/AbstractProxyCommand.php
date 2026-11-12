@@ -1,16 +1,15 @@
 <?php
 namespace GT\GtCommand\Command;
 
-use Gt\Cli\Argument\ArgumentValueList;
-use Gt\Cli\Command\Command;
+use GT\Cli\Argument\ArgumentValueList;
+use GT\Cli\Command\Command;
 
 abstract class AbstractProxyCommand extends Command {
 	protected Command $proxyCommand;
 
 	public function run(?ArgumentValueList $arguments = null):int {
 		$this->proxyCommand->setStream($this->stream);
-		$this->proxyCommand->run($arguments);
-		return 0;
+		return $this->proxyCommand->run($arguments);
 	}
 
 	public function getDescription():string {

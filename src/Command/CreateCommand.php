@@ -1,12 +1,13 @@
 <?php
 namespace GT\GtCommand\Command;
 
-use Gt\Cli\Argument\ArgumentValue;
-use Gt\Cli\Argument\ArgumentValueList;
-use Gt\Cli\Command\Command;
-use Gt\Cli\Parameter\NamedParameter;
-use Gt\Cli\Parameter\Parameter;
-use Gt\Cli\Stream;
+use GT\Cli\Argument\ArgumentValue;
+use GT\Cli\Argument\ArgumentValueList;
+use GT\Cli\Command\Command;
+use GT\Cli\Parameter\NamedParameter;
+use GT\Cli\Parameter\Parameter;
+use GT\Cli\Stream;
+use GT\Cli\StreamName;
 use GT\Daemon\CommandNotFoundException;
 use GT\Daemon\Process;
 use GT\GtCommand\Blueprint\BlueprintCollection;
@@ -155,8 +156,8 @@ class CreateCommand extends Command {
 
 		while(!$this->isValidName($name)) {
 			if($i > 0) {
-				$this->writeLine("The name '$name' is not a valid directory name.", Stream::ERROR);
-				$this->writeLine("Please use only letters, numbers and underscores when naming.", Stream::ERROR);
+				$this->writeLine("The name '$name' is not a valid directory name.", StreamName::ERROR);
+				$this->writeLine("Please use only letters, numbers and underscores when naming.", StreamName::ERROR);
 			}
 
 			$this->writeLine("What is the name of your project? (This will name its directory)");
@@ -181,7 +182,7 @@ class CreateCommand extends Command {
 		$i = 0;
 		while(!$this->isValidNamespace($namespace)) {
 			if($i > 0) {
-				$this->writeLine("The namespace '$namespace' is not a valid PHP Namespace.", Stream::ERROR);
+				$this->writeLine("The namespace '$namespace' is not a valid PHP Namespace.", StreamName::ERROR);
 			}
 
 			$this->writeLine("What namespace would you like to use for autoloading classes?");
@@ -347,7 +348,7 @@ class CreateCommand extends Command {
 		}
 
 		if(!$suppressErrorWhenFirstLineContains || $suppressError === false) {
-			$this->write($errorOutput, Stream::ERROR);
+			$this->write($errorOutput, StreamName::ERROR);
 			return;
 		}
 
@@ -366,7 +367,7 @@ class CreateCommand extends Command {
 		);
 
 		if(!$suppressError) {
-			$this->write($errorBuffer, Stream::ERROR);
+			$this->write($errorBuffer, StreamName::ERROR);
 		}
 
 		$errorBuffer = "";
@@ -382,7 +383,7 @@ class CreateCommand extends Command {
 		}
 
 		if(!$suppressErrorWhenFirstLineContains) {
-			$this->write($errorBuffer, Stream::ERROR);
+			$this->write($errorBuffer, StreamName::ERROR);
 			$errorBuffer = "";
 			return;
 		}
@@ -393,7 +394,7 @@ class CreateCommand extends Command {
 		);
 
 		if(!$suppressError) {
-			$this->write($errorBuffer, Stream::ERROR);
+			$this->write($errorBuffer, StreamName::ERROR);
 		}
 
 		$errorBuffer = "";

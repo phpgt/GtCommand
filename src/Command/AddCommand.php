@@ -1,10 +1,11 @@
 <?php
 namespace GT\GtCommand\Command;
 
-use Gt\Cli\Argument\ArgumentValueList;
-use Gt\Cli\Command\Command;
-use Gt\Cli\Parameter\NamedParameter;
-use Gt\Cli\Stream;
+use GT\Cli\Argument\ArgumentValueList;
+use GT\Cli\Command\Command;
+use GT\Cli\Parameter\NamedParameter;
+use GT\Cli\Stream;
+use GT\Cli\StreamName;
 use RuntimeException;
 
 class AddCommand extends Command {
@@ -69,7 +70,7 @@ class AddCommand extends Command {
 		}
 
 		$supportedTypes = implode(", ", self::SUPPORTED_TYPES);
-		$this->writeLine("Unknown add type '$type'. Supported types: $supportedTypes", Stream::ERROR);
+		$this->writeLine("Unknown add type '$type'. Supported types: $supportedTypes", StreamName::ERROR);
 		exit(1); // phpcs:ignore
 	}
 
@@ -80,7 +81,7 @@ class AddCommand extends Command {
 
 		$this->writeLine(
 			"Invalid name '$name'. Use only letters, numbers, hyphens and underscores.",
-			Stream::ERROR
+			StreamName::ERROR
 		);
 		exit(1); // phpcs:ignore
 	}
@@ -100,7 +101,7 @@ class AddCommand extends Command {
 		$templateFiles = glob($templateDirectory . "/template.*");
 
 		if(!$templateFiles) {
-			$this->writeLine("No built-in templates found for type '$type'.", Stream::ERROR);
+			$this->writeLine("No built-in templates found for type '$type'.", StreamName::ERROR);
 			exit(1); // phpcs:ignore
 		}
 
@@ -120,7 +121,7 @@ class AddCommand extends Command {
 		if(!$templateFiles) {
 			$this->writeLine(
 				"Template '$template' was not found in $templateDirectory",
-				Stream::ERROR
+				StreamName::ERROR
 			);
 			exit(1); // phpcs:ignore
 		}
@@ -137,7 +138,7 @@ class AddCommand extends Command {
 	private function assertDestinationFilesDoNotExist(array $destinationFileMap):void {
 		foreach($destinationFileMap as $destinationPath) {
 			if(file_exists($destinationPath)) {
-				$this->writeLine("Destination already exists: $destinationPath", Stream::ERROR);
+				$this->writeLine("Destination already exists: $destinationPath", StreamName::ERROR);
 				exit(1); // phpcs:ignore
 			}
 		}
@@ -146,7 +147,7 @@ class AddCommand extends Command {
 	private function ensureDestinationDirectoryExists(string $type):void {
 		$destinationDirectory = getcwd() . DIRECTORY_SEPARATOR . $type;
 		if(!is_dir($destinationDirectory) && !mkdir($destinationDirectory, 0777, true)) {
-			$this->writeLine("Unable to create directory: $destinationDirectory", Stream::ERROR);
+			$this->writeLine("Unable to create directory: $destinationDirectory", StreamName::ERROR);
 			// TODO: Replace with proper exit code when upgrade to phpgt/cli v1.3.5
 			exit(1); // phpcs:ignore
 		}
