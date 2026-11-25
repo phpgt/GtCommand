@@ -4,7 +4,6 @@ namespace GT\GtCommand\Command;
 use GT\Cli\Argument\ArgumentValueList;
 use GT\Cli\Command\Command;
 use GT\Cli\Parameter\Parameter;
-use GT\Cli\Stream;
 use GT\Cli\StreamName;
 use GT\Daemon\Pool;
 use GT\Daemon\Process;
@@ -17,6 +16,12 @@ class RunCommand extends Command {
 	 */
 	public function run(?ArgumentValueList $arguments = null):int {
 		global $argv;
+
+		$projectError = $this->getProjectError();
+		if($projectError !== null) {
+			$this->writeLine($projectError, StreamName::ERROR);
+			return 1;
+		}
 
 		$serveArgs = [];
 		if($arguments->contains("debug")) {
@@ -103,6 +108,50 @@ class RunCommand extends Command {
 
 	public function getName():string {
 		return "run";
+	}
+
+	private function getProjectError():?string {
+		$currentDirectory = getcwd();
+		if($currentDirectory === false) {
+			return "Error: Could not determine the current directory";
+		}
+
+		$directory = $currentDirectory;
+		while(true) {
+			$installed = is_file("$directory/vendor/phpgt/webengine/go.php");
+			if($installed || $this->requiresWebEngine($directory)) {
+				if($directory === $currentDirectory) {
+					return $installed ? null : "Error: WebEngine dependencies are missing."
+						. " Run 'composer install', then retry 'gt run'.";
+				}
+
+				$instructions = $installed
+					? "Run 'gt run' from that directory."
+					: "Run 'composer install' there, then run 'gt run'.";
+				return "Error: WebEngine project found at $directory. $instructions";
+			}
+
+			$parent = dirname($directory);
+			if($parent === $directory) {
+				return "Error: Current directory is not a WebEngine project";
+			}
+			$directory = $parent;
+		}
+	}
+
+	private function requiresWebEngine(string $directory):bool {
+		$manifest = "$directory/composer.json";
+		if(!is_file($manifest) || !is_readable($manifest)) {
+			return false;
+		}
+
+		$json = file_get_contents($manifest);
+		if($json === false) {
+			return false;
+		}
+
+		$composerConfig = json_decode($json, true);
+		return isset($composerConfig["require"]["phpgt/webengine"]);
 	}
 
 	public function getDescription():string {
